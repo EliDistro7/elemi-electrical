@@ -20,17 +20,21 @@ export function Header() {
   ];
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
+    <header className="bg-white shadow-strong sticky top-0 z-50 border-b border-border-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-5">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="bg-blue-600 p-2 rounded-lg">
-              <Zap className="h-8 w-8 text-white" />
+          <div className="flex items-center space-x-4">
+            <div className="bg-primary-gradient p-3 rounded-2xl shadow-primary">
+              <Zap className="h-7 w-7 text-white" strokeWidth={2.5} />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-blue-600">ELEMI ELECTRICAL</h1>
-              <p className="text-sm text-gray-600">Innovative. Skilled. Reliable.</p>
+              <h1 className="text-display-sm font-display font-black text-primary-700 leading-none tracking-tight">
+                ELEMI ELECTRICAL
+              </h1>
+              <p className="text-sm font-medium text-text-secondary tracking-wide uppercase mt-0.5">
+                Innovative. Skilled. Reliable.
+              </p>
             </div>
           </div>
 
@@ -40,47 +44,54 @@ export function Header() {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                className="text-base font-semibold text-text-secondary hover:text-primary-600 transition-all duration-300 hover:-translate-y-0.5 relative group"
               >
                 {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-gradient transition-all duration-300 group-hover:w-full rounded-full"></span>
               </a>
             ))}
             <LanguageToggle />
-            <Button className="bg-orange-500 hover:bg-orange-600">
+            <Button className="btn-secondary px-6 py-3 rounded-2xl text-base font-semibold font-display shadow-yellow hover:shadow-yellow-lg transition-all duration-300">
               {t('getQuote')}
             </Button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center space-x-2">
+          <div className="lg:hidden flex items-center space-x-3">
             <LanguageToggle />
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2.5 rounded-xl border-2 border-border-medium hover:border-primary-400 hover:bg-background-200 transition-all duration-300 hover:shadow-soft"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+              {isMenuOpen ? (
+                <X className="h-6 w-6 text-text-primary" strokeWidth={2.5} />
+              ) : (
+                <Menu className="h-6 w-6 text-text-primary" strokeWidth={2.5} />
+              )}
+            </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t">
+          <div className="lg:hidden py-6 border-t border-border-light animate-slide-down">
             <nav className="flex flex-col space-y-4">
-              {navigation.map((item) => (
+              {navigation.map((item, index) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                  className="text-lg font-semibold text-text-secondary hover:text-primary-600 transition-all duration-300 py-2 px-4 rounded-xl hover:bg-background-200 hover:translate-x-2"
                   onClick={() => setIsMenuOpen(false)}
+                  style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {item.name}
                 </a>
               ))}
-              <Button className="bg-orange-500 hover:bg-orange-600 mt-4">
-                {t('getQuote')}
-              </Button>
+              <div className="pt-4">
+                <Button className="btn-secondary w-full px-6 py-4 rounded-2xl text-lg font-bold font-display shadow-yellow hover:shadow-yellow-lg transition-all duration-300">
+                  {t('getQuote')}
+                </Button>
+              </div>
             </nav>
           </div>
         )}
