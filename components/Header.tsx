@@ -25,9 +25,7 @@ export function Header() {
         <div className="flex justify-between items-center py-5">
           {/* Logo */}
           <div className="flex items-center space-x-4">
-            <div className="bg-primary-gradient p-3 rounded-2xl shadow-primary">
-              <Zap className="h-7 w-7 text-white" strokeWidth={2.5} />
-            </div>
+           
             <div>
               <h1 className="text-display-sm font-display font-black text-primary-700 leading-none tracking-tight">
                 ELEMI ELECTRICAL
