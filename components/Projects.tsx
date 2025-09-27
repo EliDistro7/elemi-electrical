@@ -73,12 +73,14 @@ export function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
+    <section id="projects" className="py-24 bg-background-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('projectsTitle')}</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div className="text-center mb-20">
+          <h2 className="text-display-lg font-display font-black text-text-primary mb-6 tracking-tight">
+            {t('projectsTitle')}
+          </h2>
+          <p className="text-xl font-medium text-text-secondary max-w-4xl mx-auto leading-relaxed">
             {t('projectsSubtitle')}
           </p>
         </div>
@@ -86,43 +88,66 @@ export function Projects() {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="relative h-48 overflow-hidden">
+            <Card key={index} className="glass rounded-4xl overflow-hidden hover:shadow-primary-lg transition-all duration-300 hover:-translate-y-1 border border-border-light group">
+              <div className="relative h-56 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 <div className="absolute top-4 right-4">
-                  <Badge variant={project.status === 'Completed' ? 'default' : 'secondary'}>
+                  <Badge 
+                    variant={project.status === 'Completed' ? 'default' : 'secondary'}
+                    className={`font-semibold px-3 py-1.5 rounded-xl ${
+                      project.status === 'Completed' 
+                        ? 'bg-accent-gradient text-white shadow-green' 
+                        : 'bg-secondary-gradient text-white shadow-yellow'
+                    }`}
+                  >
                     {project.status}
                   </Badge>
                 </div>
               </div>
-              <CardContent className="p-6">
-                <h3 className="font-bold text-lg mb-2 text-gray-900">{project.title}</h3>
-                <p className="text-gray-600 mb-4 text-sm line-clamp-2">{project.description}</p>
+              <CardContent className="p-8">
+                <h3 className="font-display font-bold text-xl mb-3 text-text-primary leading-tight tracking-tight">
+                  {project.title}
+                </h3>
+                <p className="text-text-secondary font-medium mb-6 leading-relaxed text-base">
+                  {project.description}
+                </p>
                 
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Building2 className="h-4 w-4 mr-2 text-blue-600" />
-                    {project.client}
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center text-sm font-medium text-text-secondary">
+                    <div className="w-8 h-8 bg-primary-100 rounded-xl flex items-center justify-center mr-3 shrink-0">
+                      <Building2 className="h-4 w-4 text-primary-600" strokeWidth={2.5} />
+                    </div>
+                    <span className="truncate">{project.client}</span>
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <MapPin className="h-4 w-4 mr-2 text-green-600" />
-                    {project.location}
+                  <div className="flex items-center text-sm font-medium text-text-secondary">
+                    <div className="w-8 h-8 bg-green-100 rounded-xl flex items-center justify-center mr-3 shrink-0">
+                      <MapPin className="h-4 w-4 text-green-600" strokeWidth={2.5} />
+                    </div>
+                    <span className="truncate">{project.location}</span>
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Calendar className="h-4 w-4 mr-2 text-orange-600" />
-                    {project.year}
+                  <div className="flex items-center text-sm font-medium text-text-secondary">
+                    <div className="w-8 h-8 bg-warning-100 rounded-xl flex items-center justify-center mr-3 shrink-0">
+                      <Calendar className="h-4 w-4 text-warning-600" strokeWidth={2.5} />
+                    </div>
+                    <span>{project.year}</span>
                   </div>
-                  <div className="flex items-center text-sm font-semibold text-blue-600">
-                    <DollarSign className="h-4 w-4 mr-2" />
-                    {project.value}
+                  <div className="flex items-center text-base font-bold text-primary-600">
+                    <div className="w-8 h-8 bg-primary-100 rounded-xl flex items-center justify-center mr-3 shrink-0">
+                      <DollarSign className="h-4 w-4 text-primary-600" strokeWidth={2.5} />
+                    </div>
+                    <span className="font-mono tracking-tight">{project.value}</span>
                   </div>
                 </div>
 
-                <Button variant="outline" className="w-full">
+                <Button 
+                  variant="outline" 
+                  className="w-full font-display font-semibold border-2 border-primary-300 text-primary-700 hover:bg-primary-50 hover:border-primary-500 rounded-2xl py-3"
+                >
                   View Details
                 </Button>
               </CardContent>
@@ -131,24 +156,42 @@ export function Projects() {
         </div>
 
         {/* Project Statistics */}
-        <div className="mt-16 bg-white rounded-2xl p-8 shadow-lg">
-          <h3 className="text-2xl font-bold text-center mb-8 text-gray-900">Project Achievements</h3>
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">2B+</div>
-              <div className="text-gray-600">Total Project Value (TZS)</div>
+        <div className="mt-20 glass-strong rounded-4xl p-10 shadow-primary-lg border border-border-light">
+          <h3 className="text-display-xs font-display font-bold text-center mb-12 text-text-primary tracking-tight">
+            Project Achievements
+          </h3>
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center bg-white bg-opacity-50 rounded-3xl p-8 hover:bg-opacity-70 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="text-5xl font-display font-black text-primary-600 mb-3 tracking-tight group-hover:scale-110 transition-transform duration-300">
+                2B+
+              </div>
+              <div className="text-text-secondary font-semibold uppercase tracking-wide text-sm">
+                Total Project Value (TZS)
+              </div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 mb-2">15+</div>
-              <div className="text-gray-600">Major Projects Completed</div>
+            <div className="text-center bg-white bg-opacity-50 rounded-3xl p-8 hover:bg-opacity-70 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="text-5xl font-display font-black text-green-600 mb-3 tracking-tight group-hover:scale-110 transition-transform duration-300">
+                15+
+              </div>
+              <div className="text-text-secondary font-semibold uppercase tracking-wide text-sm">
+                Major Projects Completed
+              </div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600 mb-2">10+</div>
-              <div className="text-gray-600">International Clients</div>
+            <div className="text-center bg-white bg-opacity-50 rounded-3xl p-8 hover:bg-opacity-70 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="text-5xl font-display font-black text-warning-600 mb-3 tracking-tight group-hover:scale-110 transition-transform duration-300">
+                10+
+              </div>
+              <div className="text-text-secondary font-semibold uppercase tracking-wide text-sm">
+                International Clients
+              </div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600 mb-2">5+</div>
-              <div className="text-gray-600">Regions Covered</div>
+            <div className="text-center bg-white bg-opacity-50 rounded-3xl p-8 hover:bg-opacity-70 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="text-5xl font-display font-black text-purple-600 mb-3 tracking-tight group-hover:scale-110 transition-transform duration-300">
+                5+
+              </div>
+              <div className="text-text-secondary font-semibold uppercase tracking-wide text-sm">
+                Regions Covered
+              </div>
             </div>
           </div>
         </div>
