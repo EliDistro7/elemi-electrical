@@ -15,56 +15,67 @@ export function Contact() {
       icon: MapPin,
       title: t('headOffice'),
       content: 'Plot No. 133, Block F, Office No. 41, Buzuruga Plaza Complex, Buzuruga, Mwanza',
-      color: 'text-blue-600'
+      gradient: 'from-primary-500 to-primary-700'
     },
     {
       icon: Building2,
       title: t('branchOffice'),
       content: 'Plot No. 590 Block BB, Singida, Misuna Area',
-      color: 'text-green-600'
+      gradient: 'from-green-500 to-green-700'
     },
     {
       icon: Phone,
       title: t('phone'),
       content: '+255 764 420 826 / +255 655 420 826 / +255 620 636 307',
-      color: 'text-orange-600'
+      gradient: 'from-warning-500 to-warning-700'
     },
     {
       icon: Mail,
       title: t('email'),
       content: 'baraka@elemielectrical.co.tz / elemicompany19@gmail.com',
-      color: 'text-purple-600'
+      gradient: 'from-purple-500 to-purple-700'
     }
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-24 bg-background-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('contactTitle')}</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div className="text-center mb-20">
+          <h2 className="text-display-lg font-display font-black text-text-primary mb-6 tracking-tight">
+            {t('contactTitle')}
+          </h2>
+          <p className="text-xl font-medium text-text-secondary max-w-4xl mx-auto leading-relaxed">
             {t('contactSubtitle')}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Information */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Get in Touch</h3>
-            <div className="space-y-6 mb-8">
+            <h3 className="text-display-xs font-display font-bold text-text-primary mb-10 tracking-tight">
+              Get in Touch
+            </h3>
+            <div className="space-y-6 mb-10">
               {contactInfo.map((info, index) => {
                 const IconComponent = info.icon;
                 return (
-                  <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className={`p-3 rounded-lg bg-gray-50`}>
-                          <IconComponent className={`h-6 w-6 ${info.color}`} />
+                  <Card 
+                    key={index} 
+                    className="glass rounded-4xl border border-border-light hover:shadow-primary transition-all duration-300 hover:-translate-y-1 hover:border-primary-300 group"
+                  >
+                    <CardContent className="p-8">
+                      <div className="flex items-start space-x-6">
+                        <div className={`w-14 h-14 bg-gradient-to-br ${info.gradient} rounded-2xl flex items-center justify-center shadow-medium group-hover:shadow-lg transition-all duration-300 group-hover:scale-110 shrink-0`}>
+                          <IconComponent className="h-6 w-6 text-white" strokeWidth={2.5} />
                         </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-900 mb-2">{info.title}</h4>
-                          <p className="text-gray-600">{info.content}</p>
+                        <div className="flex-1">
+                          <h4 className="font-display font-bold text-lg text-text-primary mb-3 tracking-tight">
+                            {info.title}
+                          </h4>
+                          <p className="text-text-secondary font-medium leading-relaxed">
+                            {info.content}
+                          </p>
                         </div>
                       </div>
                     </CardContent>
@@ -74,35 +85,41 @@ export function Contact() {
             </div>
 
             {/* Business Hours */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Clock className="h-5 w-5 mr-2 text-blue-600" />
+            <Card className="glass rounded-4xl border border-border-light shadow-soft hover:shadow-medium transition-all duration-300">
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center text-xl font-display font-bold text-text-primary tracking-tight">
+                  <div className="w-12 h-12 bg-primary-gradient rounded-2xl flex items-center justify-center shadow-primary mr-4">
+                    <Clock className="h-5 w-5 text-white" strokeWidth={2.5} />
+                  </div>
                   Business Hours
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-2 text-gray-600">
-                  <div className="flex justify-between">
-                    <span>Monday - Friday</span>
-                    <span>8:00 AM - 5:00 PM</span>
+              <CardContent className="pt-0">
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center py-3 border-b border-border-light">
+                    <span className="font-semibold text-text-secondary">Monday - Friday</span>
+                    <span className="font-bold text-text-primary font-mono">8:00 AM - 5:00 PM</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Saturday</span>
-                    <span>9:00 AM - 1:00 PM</span>
+                  <div className="flex justify-between items-center py-3 border-b border-border-light">
+                    <span className="font-semibold text-text-secondary">Saturday</span>
+                    <span className="font-bold text-text-primary font-mono">9:00 AM - 1:00 PM</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Sunday</span>
-                    <span>Emergency Only</span>
+                  <div className="flex justify-between items-center py-3">
+                    <span className="font-semibold text-text-secondary">Sunday</span>
+                    <span className="font-bold text-warning-600">Emergency Only</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* WhatsApp CTA */}
-            <div className="mt-6">
-              <Button className="w-full bg-green-500 hover:bg-green-600 text-white">
-                <MessageCircle className="mr-2 h-5 w-5" />
+            <div className="mt-8">
+              <Button 
+                variant="success" 
+                size="lg" 
+                className="w-full font-display font-bold text-lg tracking-tight"
+              >
+                <MessageCircle className="mr-3 h-6 w-6" strokeWidth={2.5} />
                 WhatsApp Us: +255 764 420 826
               </Button>
             </div>
@@ -110,47 +127,64 @@ export function Contact() {
 
           {/* Contact Form */}
           <div>
-            <Card>
-              <CardHeader>
-                <CardTitle>Request a Quote</CardTitle>
-                <p className="text-gray-600">Tell us about your electrical project and we'll get back to you promptly.</p>
+            <Card className="glass-strong rounded-4xl border border-border-light shadow-primary-lg">
+              <CardHeader className="pb-6">
+                <CardTitle className="text-2xl font-display font-bold text-text-primary tracking-tight mb-3">
+                  Request a Quote
+                </CardTitle>
+                <p className="text-text-secondary font-medium leading-relaxed">
+                  Tell us about your electrical project and we'll get back to you promptly.
+                </p>
               </CardHeader>
               <CardContent>
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-bold text-text-primary mb-3 uppercase tracking-wide">
                         Full Name *
                       </label>
-                      <Input placeholder="Your full name" />
+                      <Input 
+                        placeholder="Your full name" 
+                        className="h-12 rounded-2xl border-2 border-border-default focus:border-primary-500 font-medium"
+                      />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-bold text-text-primary mb-3 uppercase tracking-wide">
                         Phone Number *
                       </label>
-                      <Input placeholder="+255 XXX XXX XXX" />
+                      <Input 
+                        placeholder="+255 XXX XXX XXX" 
+                        className="h-12 rounded-2xl border-2 border-border-default focus:border-primary-500 font-medium font-mono"
+                      />
                     </div>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-bold text-text-primary mb-3 uppercase tracking-wide">
                       Email Address *
                     </label>
-                    <Input type="email" placeholder="your.email@example.com" />
+                    <Input 
+                      type="email" 
+                      placeholder="your.email@example.com" 
+                      className="h-12 rounded-2xl border-2 border-border-default focus:border-primary-500 font-medium"
+                    />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-bold text-text-primary mb-3 uppercase tracking-wide">
                       Company/Organization
                     </label>
-                    <Input placeholder="Your company name" />
+                    <Input 
+                      placeholder="Your company name" 
+                      className="h-12 rounded-2xl border-2 border-border-default focus:border-primary-500 font-medium"
+                    />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-bold text-text-primary mb-3 uppercase tracking-wide">
                       Service Required *
                     </label>
-                    <select className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select className="w-full h-12 px-4 border-2 border-border-default rounded-2xl focus:outline-none focus:ring-0 focus:border-primary-500 font-medium text-text-secondary bg-white transition-all duration-200">
                       <option>Select a service</option>
                       <option>Transmission & Distribution Lines</option>
                       <option>Solar Power Systems</option>
@@ -162,44 +196,63 @@ export function Contact() {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-bold text-text-primary mb-3 uppercase tracking-wide">
                       Project Details *
                     </label>
                     <Textarea 
                       placeholder="Please describe your project requirements, timeline, and any specific needs..."
                       rows={5}
+                      className="rounded-2xl border-2 border-border-default focus:border-primary-500 font-medium resize-none"
                     />
                   </div>
                   
-                  <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+                  <Button 
+                    variant="default" 
+                    size="lg" 
+                    className="w-full font-display font-bold text-lg tracking-tight mt-8"
+                  >
                     Submit Quote Request
                   </Button>
-                </form>
+                </div>
               </CardContent>
             </Card>
           </div>
         </div>
 
         {/* Map Section */}
-        <div className="mt-16">
-          <Card>
-            <CardHeader>
-              <CardTitle>Our Locations</CardTitle>
+        <div className="mt-20">
+          <Card className="glass rounded-4xl border border-border-light shadow-soft">
+            <CardHeader className="pb-6">
+              <CardTitle className="text-2xl font-display font-bold text-text-primary tracking-tight">
+                Our Locations
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-8">
-                <div className="bg-gray-100 rounded-lg p-6 h-64 flex items-center justify-center">
-                  <div className="text-center text-gray-600">
-                    <MapPin className="h-12 w-12 mx-auto mb-4" />
-                    <p className="font-semibold">Mwanza Head Office</p>
-                    <p className="text-sm">Interactive Map</p>
+                <div className="bg-background-300 rounded-3xl p-8 h-64 flex items-center justify-center hover:bg-background-400 transition-all duration-300 group border-2 border-border-light hover:border-primary-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-primary-gradient rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-primary group-hover:shadow-primary-lg transition-all duration-300 group-hover:scale-110">
+                      <MapPin className="h-8 w-8 text-white" strokeWidth={2.5} />
+                    </div>
+                    <p className="font-display font-bold text-lg text-text-primary mb-2 tracking-tight">
+                      Mwanza Head Office
+                    </p>
+                    <p className="text-sm font-medium text-text-secondary uppercase tracking-wide">
+                      Interactive Map
+                    </p>
                   </div>
                 </div>
-                <div className="bg-gray-100 rounded-lg p-6 h-64 flex items-center justify-center">
-                  <div className="text-center text-gray-600">
-                    <MapPin className="h-12 w-12 mx-auto mb-4" />
-                    <p className="font-semibold">Singida Branch Office</p>
-                    <p className="text-sm">Interactive Map</p>
+                <div className="bg-background-300 rounded-3xl p-8 h-64 flex items-center justify-center hover:bg-background-400 transition-all duration-300 group border-2 border-border-light hover:border-green-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-accent-gradient rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-green group-hover:shadow-green-lg transition-all duration-300 group-hover:scale-110">
+                      <MapPin className="h-8 w-8 text-white" strokeWidth={2.5} />
+                    </div>
+                    <p className="font-display font-bold text-lg text-text-primary mb-2 tracking-tight">
+                      Singida Branch Office
+                    </p>
+                    <p className="text-sm font-medium text-text-secondary uppercase tracking-wide">
+                      Interactive Map
+                    </p>
                   </div>
                 </div>
               </div>
