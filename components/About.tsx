@@ -3,11 +3,36 @@
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Award, Target, Eye, Users, Lightbulb, Shield } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function About() {
-  const [language, setLanguage] = useState('en');
+  const {language} = useLanguage();
 
-  const translations = {
+  type Language = 'en' | 'sw';
+  type TranslationKeys =
+    | 'aboutTitle'
+    | 'aboutSubtitle'
+    | 'directorMessage'
+    | 'directorName'
+    | 'directorTitle'
+    | 'missionTitle'
+    | 'mission'
+    | 'visionTitle'
+    | 'vision'
+    | 'valuesTitle'
+    | 'innovative'
+    | 'skilled'
+    | 'reliable'
+    | 'integrity'
+    | 'quality'
+    | 'transparency'
+    | 'statsTitle';
+
+  type Translations = {
+    [lang in Language]: Record<TranslationKeys, string>;
+  };
+
+  const translations: Translations = {
     en: {
       aboutTitle: 'About Us',
       aboutSubtitle: 'Leading electrical solutions provider in Tanzania with expertise in transmission lines, solar power, and comprehensive electrical services',
@@ -48,7 +73,7 @@ export function About() {
     }
   };
 
-  const t = (key) => translations[language]?.[key] || key;
+  const t = (key: TranslationKeys): string => translations[language][key] || key;
 
   const values = [
     { icon: Lightbulb, title: t('innovative') },
