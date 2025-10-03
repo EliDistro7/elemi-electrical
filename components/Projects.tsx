@@ -76,7 +76,7 @@ export function Projects() {
       location: 'Kagera Region',
       year: '2022',
       status: 'completed',
-      image: '/mv1.png',
+      image: '/MV1.png',
       description: 'Medium voltage transmission line construction and electrical infrastructure development.',
     },
     {
