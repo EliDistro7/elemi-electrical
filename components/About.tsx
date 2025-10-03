@@ -8,88 +8,88 @@ export function About() {
   const { t } = useLanguage();
 
   const values = [
-    { icon: Lightbulb, title: t('innovative'), gradient: 'from-yellow-400 to-yellow-600' },
-    { icon: Award, title: t('skilled'), gradient: 'from-primary-500 to-primary-700' },
-    { icon: Shield, title: t('reliable'), gradient: 'from-green-500 to-green-700' },
-    { icon: Users, title: t('integrity'), gradient: 'from-purple-500 to-purple-700' },
-    { icon: Target, title: t('quality'), gradient: 'from-error-500 to-error-700' },
-    { icon: Eye, title: t('transparency'), gradient: 'from-warning-500 to-warning-700' },
+    { icon: Lightbulb, title: t('innovative') },
+    { icon: Award, title: t('skilled') },
+    { icon: Shield, title: t('reliable') },
+    { icon: Users, title: t('integrity') },
+    { icon: Target, title: t('quality') },
+    { icon: Eye, title: t('transparency') },
   ];
 
   return (
-    <section id="about" className="py-24 bg-background-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-display-lg font-display font-black text-text-primary mb-6 tracking-tight">
+        <div className="text-center mb-32">
+          <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-black mb-8 tracking-tighter uppercase">
             {t('aboutTitle')}
           </h2>
-          <p className="text-xl font-medium text-text-secondary max-w-4xl mx-auto leading-relaxed">
+          <p className="text-2xl md:text-3xl font-light text-gray-700 max-w-4xl mx-auto leading-relaxed">
             {t('aboutSubtitle')}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-20 items-start">
           {/* Left Content */}
-          <div className="space-y-8">
+          <div className="space-y-12">
             {/* Director Message */}
             <div>
-              <h3 className="text-display-xs font-display font-bold text-primary-600 mb-6 tracking-tight">
+              <h3 className="text-4xl md:text-5xl font-black text-black mb-12 tracking-tight uppercase border-b-4 border-black pb-4">
                 {t('directorMessage')}
               </h3>
-              <div className="glass-strong rounded-4xl p-8 shadow-primary hover:shadow-primary-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="flex items-start space-x-6 mb-6">
-                  <div className="relative">
+              <div className="bg-white border-4 border-black p-10 hover:-translate-y-2 transition-all duration-300">
+                <div className="flex items-start space-x-8 mb-10">
+                  <div className="relative flex-shrink-0">
                     <img
-                      src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg"
+                      src="/elemi-boss.png"
                       alt="Managing Director"
-                      className="w-20 h-20 rounded-2xl object-cover shadow-medium"
+                      className="w-40 h-40 object-cover border-4 border-black"
                     />
-                    <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-primary-gradient rounded-full border-2 border-white flex items-center justify-center">
-                      <Award className="w-3 h-3 text-white" />
+                    <div className="absolute -bottom-3 -right-3 w-10 h-10 bg-black border-4 border-white flex items-center justify-center">
+                      <Award className="w-5 h-5 text-white" strokeWidth={3} />
                     </div>
                   </div>
                   <div>
-                    <p className="font-display font-bold text-lg text-text-primary mb-1">
+                    <p className="font-black text-2xl text-black mb-2 uppercase tracking-tight">
                       {t('directorName')}
                     </p>
-                    <p className="text-sm font-semibold text-text-secondary uppercase tracking-wide">
+                    <p className="text-base font-bold text-gray-700 uppercase tracking-widest">
                       Managing & Technical Director
                     </p>
                   </div>
                 </div>
-                <blockquote className="text-text-secondary leading-relaxed font-medium text-base border-l-4 border-primary-300 pl-6 italic">
+                <blockquote className="text-gray-800 leading-relaxed font-medium text-lg border-l-8 border-black pl-8">
                   "At Elemi Electrical, we are committed to delivering professional electrical contracting services with unmatched technical competence and unwavering ethical standards. Our team's dedication to innovation and quality has established us as Tanzania's trusted electrical engineering partner."
                 </blockquote>
               </div>
             </div>
 
             {/* Mission & Vision */}
-            <div className="space-y-6">
-              <div className="glass rounded-4xl p-8 shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-0.5 border-l-4 border-primary-500">
-                <div className="flex items-center mb-6">
-                  <div className="bg-primary-gradient p-3 rounded-2xl shadow-primary mr-4">
-                    <Target className="h-6 w-6 text-white" strokeWidth={2.5} />
+            <div className="space-y-8">
+              <div className="bg-white border-4 border-black p-10 hover:-translate-y-1 transition-all duration-300">
+                <div className="flex items-center mb-8">
+                  <div className="bg-black p-4 mr-6">
+                    <Target className="h-8 w-8 text-white" strokeWidth={2.5} />
                   </div>
-                  <h3 className="text-2xl font-display font-bold text-text-primary tracking-tight">
+                  <h3 className="text-3xl font-black text-black tracking-tight uppercase">
                     {t('missionTitle')}
                   </h3>
                 </div>
-                <p className="text-text-secondary font-medium leading-relaxed text-lg">
+                <p className="text-gray-800 font-medium leading-relaxed text-lg">
                   {t('mission')}
                 </p>
               </div>
 
-              <div className="glass rounded-4xl p-8 shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-0.5 border-l-4 border-warning-500">
-                <div className="flex items-center mb-6">
-                  <div className="bg-secondary-gradient p-3 rounded-2xl shadow-yellow mr-4">
-                    <Eye className="h-6 w-6 text-white" strokeWidth={2.5} />
+              <div className="bg-black text-white border-4 border-black p-10 hover:-translate-y-1 transition-all duration-300">
+                <div className="flex items-center mb-8">
+                  <div className="bg-white p-4 mr-6">
+                    <Eye className="h-8 w-8 text-black" strokeWidth={2.5} />
                   </div>
-                  <h3 className="text-2xl font-display font-bold text-text-primary tracking-tight">
+                  <h3 className="text-3xl font-black text-white tracking-tight uppercase">
                     {t('visionTitle')}
                   </h3>
                 </div>
-                <p className="text-text-secondary font-medium leading-relaxed text-lg">
+                <p className="text-gray-200 font-medium leading-relaxed text-lg">
                   {t('vision')}
                 </p>
               </div>
@@ -98,22 +98,22 @@ export function About() {
 
           {/* Right Content - Values */}
           <div>
-            <h3 className="text-display-xs font-display font-bold text-text-primary mb-10 tracking-tight">
+            <h3 className="text-4xl md:text-5xl font-black text-black mb-12 tracking-tight uppercase border-b-4 border-black pb-4">
               {t('valuesTitle')}
             </h3>
-            <div className="grid grid-cols-2 gap-6 mb-10">
+            <div className="grid grid-cols-2 gap-8 mb-12">
               {values.map((value, index) => {
                 const IconComponent = value.icon;
                 return (
                   <Card 
                     key={index} 
-                    className="glass rounded-3xl border border-border-light hover:shadow-primary transition-all duration-300 hover:-translate-y-1 hover:border-primary-300 group"
+                    className="bg-white border-4 border-black hover:bg-black group transition-all duration-300 hover:-translate-y-2"
                   >
-                    <CardContent className="p-8 text-center">
-                      <div className={`w-16 h-16 bg-gradient-to-br ${value.gradient} rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-medium group-hover:shadow-lg transition-all duration-300 group-hover:scale-110`}>
-                        <IconComponent className="h-8 w-8 text-white" strokeWidth={2.5} />
+                    <CardContent className="p-10 text-center">
+                      <div className="w-20 h-20 bg-black group-hover:bg-white border-4 border-black mx-auto mb-6 flex items-center justify-center transition-all duration-300">
+                        <IconComponent className="h-10 w-10 text-white group-hover:text-black transition-colors duration-300" strokeWidth={2.5} />
                       </div>
-                      <h4 className="font-display font-bold text-lg text-text-primary tracking-tight">
+                      <h4 className="font-black text-xl text-black group-hover:text-white tracking-tight uppercase transition-colors duration-300">
                         {value.title}
                       </h4>
                     </CardContent>
@@ -123,26 +123,27 @@ export function About() {
             </div>
 
             {/* Company Stats */}
-            <div className="bg-primary-gradient rounded-4xl p-8 text-white shadow-primary-lg hover:shadow-primary transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-600 via-purple-600 to-primary-700 opacity-90"></div>
+            <div className="bg-black p-12 text-white border-4 border-black hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
+              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,.05)_50%,transparent_75%,transparent_100%)] bg-[length:250px_250px] animate-[shimmer_3s_linear_infinite]"></div>
+              
               <div className="relative z-10">
-                <h4 className="text-2xl font-display font-bold mb-8 text-center tracking-tight">
+                <h4 className="text-3xl font-black mb-10 text-center tracking-tight uppercase">
                   {t('statsTitle')}
                 </h4>
                 <div className="grid grid-cols-2 gap-8">
-                  <div className="text-center bg-white bg-opacity-10 rounded-3xl p-6 backdrop-blur-sm border border-white border-opacity-20">
-                    <div className="text-4xl font-display font-black mb-2 tracking-tight">
-                      Class II
+                  <div className="text-center bg-white text-black p-8 border-4 border-white">
+                    <div className="text-5xl font-black mb-3 tracking-tighter">
+                      CLASS II
                     </div>
-                    <div className="text-sm font-semibold opacity-90 uppercase tracking-wide">
+                    <div className="text-sm font-black uppercase tracking-widest">
                       Electrical Contractor
                     </div>
                   </div>
-                  <div className="text-center bg-white bg-opacity-10 rounded-3xl p-6 backdrop-blur-sm border border-white border-opacity-20">
-                    <div className="text-2xl font-mono font-bold mb-2 tracking-tight">
+                  <div className="text-center bg-white text-black p-8 border-4 border-white">
+                    <div className="text-2xl font-black mb-3 tracking-tight">
                       E2/96/06/2024
                     </div>
-                    <div className="text-sm font-semibold opacity-90 uppercase tracking-wide">
+                    <div className="text-sm font-black uppercase tracking-widest">
                       CRB Registration
                     </div>
                   </div>
@@ -152,6 +153,17 @@ export function About() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes shimmer {
+          0% {
+            background-position: -250px 0;
+          }
+          100% {
+            background-position: 250px 0;
+          }
+        }
+      `}</style>
     </section>
   );
 }

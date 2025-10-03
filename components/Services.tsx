@@ -3,112 +3,192 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Zap, Sun, Building, Wind, Package, ArrowRight } from 'lucide-react';
+import { Zap, Sun, Building, Wind, Package, ArrowRight, Check } from 'lucide-react';
 
 export function Services() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const translations = {
+    en: {
+      ourExpertise: 'Our Expertise',
+      servicesTitle: 'Comprehensive Electrical Solutions',
+      servicesSubtitle: 'From power infrastructure to solar installations, we deliver excellence in every project',
+      
+      transmissionTitle: 'Power Transmission & Distribution',
+      transmissionDesc: 'Professional construction of MV & LV lines with transformer installations for reliable power delivery.',
+      transmissionFeatures: ['MV & LV Distribution Lines', 'Transformer Installations', 'Power Grid Construction', 'Electrical Safety Systems'],
+      
+      solarTitle: 'Solar Power Systems',
+      solarDesc: 'Design and installation of efficient solar energy solutions for sustainable power generation.',
+      solarFeatures: ['Solar Panel Installation', 'Grid-Tie Systems', 'Off-Grid Solutions', 'Energy Storage Systems'],
+      
+      commercialTitle: 'Commercial & Residential Systems',
+      commercialDesc: 'Complete electrical systems for buildings including lighting, fire alarms, and power distribution.',
+      commercialFeatures: ['Lighting Systems', 'Fire Alarm Systems', 'Television Systems', 'Power Distribution'],
+      
+      hvacTitle: 'HVAC & Refrigeration',
+      hvacDesc: 'Installation and maintenance of air conditioning, refrigeration, and climate control systems.',
+      hvacFeatures: ['Air Conditioning', 'Refrigeration Systems', 'Ventilation Solutions', 'Climate Control'],
+      
+      supplyTitle: 'Equipment & Materials Supply',
+      supplyDesc: 'General supply of quality electrical equipment, materials, and installation tools.',
+      supplyFeatures: ['Electrical Equipment', 'Safety Materials', 'Testing Equipment', 'Installation Tools'],
+      
+      learnMore: 'Learn More',
+      getStarted: 'Get Started Today',
+      ctaTitle: 'Ready to Power Your Project?',
+      ctaSubtitle: 'Get a professional consultation and detailed quote for your electrical needs. Our team is ready to bring your vision to life.',
+      requestQuote: 'Request Quote',
+      viewProjects: 'View Our Projects',
+    },
+    sw: {
+      ourExpertise: 'Utaalamu Wetu',
+      servicesTitle: 'Suluhisho Kamili za Umeme',
+      servicesSubtitle: 'Kutoka miundombinu ya nguvu hadi usakinishaji wa nishati ya jua, tunaleta ubora katika kila mradi',
+      
+      transmissionTitle: 'Usambazaji wa Nguvu za Umeme',
+      transmissionDesc: 'Ujenzi wa kitaalamu wa mistari ya MV & LV pamoja na usakinishaji wa transformers kwa usambazaji wa nguvu za kuaminika.',
+      transmissionFeatures: ['Mistari ya Usambazaji MV & LV', 'Usakinishaji wa Transformers', 'Ujenzi wa Gridi ya Umeme', 'Mifumo ya Usalama wa Umeme'],
+      
+      solarTitle: 'Mifumo ya Nishati ya Jua',
+      solarDesc: 'Kubuni na kusakinisha suluhisho za nishati ya jua zenye ufanisi kwa uzalishaji endelevu wa nguvu.',
+      solarFeatures: ['Usakinishaji wa Paneli za Jua', 'Mifumo ya Grid-Tie', 'Suluhisho za Off-Grid', 'Mifumo ya Kuhifadhi Nishati'],
+      
+      commercialTitle: 'Mifumo ya Kibiashara na Makazi',
+      commercialDesc: 'Mifumo kamili ya umeme kwa majengo ikiwa ni pamoja na taa, kengele za moto, na usambazaji wa nguvu.',
+      commercialFeatures: ['Mifumo ya Taa', 'Mifumo ya Kengele za Moto', 'Mifumo ya Televisheni', 'Usambazaji wa Nguvu'],
+      
+      hvacTitle: 'HVAC na Ubaridishaji',
+      hvacDesc: 'Usakinishaji na matengenezo ya AC, ubaridishaji, na mifumo ya kudhibiti hali ya hewa.',
+      hvacFeatures: ['Ubaridishaji wa Hewa', 'Mifumo ya Ubaridishaji', 'Suluhisho za Uingizaji Hewa', 'Udhibiti wa Hali ya Hewa'],
+      
+      supplyTitle: 'Usambazaji wa Vifaa na Nyenzo',
+      supplyDesc: 'Usambazaji wa jumla wa vifaa vya umeme vya ubora, nyenzo, na zana za usakinishaji.',
+      supplyFeatures: ['Vifaa vya Umeme', 'Nyenzo za Usalama', 'Vifaa vya Kupima', 'Zana za Usakinishaji'],
+      
+      learnMore: 'Jifunze Zaidi',
+      getStarted: 'Anza Leo',
+      ctaTitle: 'Uko Tayari Kuendesha Mradi Wako?',
+      ctaSubtitle: 'Pata ushauri wa kitaalamu na nukuu ya kina kwa mahitaji yako ya umeme. Timu yetu iko tayari kuleta maono yako kuwa ukweli.',
+      requestQuote: 'Omba Nukuu',
+      viewProjects: 'Tazama Miradi Yetu',
+    }
+  };
+
+  const texts = translations[language] || translations.en;
 
   const services = [
     {
       icon: Zap,
-      title: t('transmissionTitle'),
-      description: t('transmissionDesc'),
-      color: 'text-primary-700',
-      bgColor: 'bg-primary-50',
-      borderColor: 'border-primary-200',
-      shadowColor: 'shadow-primary',
-      features: ['MV & LV Distribution Lines', 'Transformer Installations', 'Power Grid Construction', 'Electrical Safety Systems']
+      title: texts.transmissionTitle,
+      description: texts.transmissionDesc,
+      features: texts.transmissionFeatures
     },
     {
       icon: Sun,
-      title: t('solarTitle'),
-      description: t('solarDesc'),
-      color: 'text-yellow-600',
-      bgColor: 'bg-yellow-50',
-      borderColor: 'border-yellow-200',
-      shadowColor: 'shadow-yellow',
-      features: ['Solar Panel Installation', 'Grid-Tie Systems', 'Off-Grid Solutions', 'Energy Storage Systems']
+      title: texts.solarTitle,
+      description: texts.solarDesc,
+      features: texts.solarFeatures
     },
     {
       icon: Building,
-      title: t('commercialTitle'),
-      description: t('commercialDesc'),
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
-      borderColor: 'border-green-200',
-      shadowColor: 'shadow-green',
-      features: ['Lighting Systems', 'Fire Alarm Systems', 'Television Systems', 'Power Distribution']
+      title: texts.commercialTitle,
+      description: texts.commercialDesc,
+      features: texts.commercialFeatures
     },
     {
       icon: Wind,
-      title: t('hvacTitle'),
-      description: t('hvacDesc'),
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50',
-      borderColor: 'border-purple-200',
-      shadowColor: 'shadow-primary',
-      features: ['Air Conditioning', 'Refrigeration Systems', 'Ventilation Solutions', 'Climate Control']
+      title: texts.hvacTitle,
+      description: texts.hvacDesc,
+      features: texts.hvacFeatures
     },
     {
       icon: Package,
-      title: t('supplyTitle'),
-      description: t('supplyDesc'),
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50',
-      borderColor: 'border-orange-200',
-      shadowColor: 'shadow-yellow',
-      features: ['Electrical Equipment', 'Safety Materials', 'Testing Equipment', 'Installation Tools']
+      title: texts.supplyTitle,
+      description: texts.supplyDesc,
+      features: texts.supplyFeatures
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-background-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-display-md text-text-primary mb-6 text-balance">
-            {t('servicesTitle')}
-          </h2>
-          <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed text-pretty">
-            {t('servicesSubtitle')}
-          </p>
+    <section id="services" className="relative py-32 bg-white overflow-hidden">
+      {/* Featured Image Hero with Glass Effect Title */}
+      <div className="relative h-[600px] mb-32 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/featured-services.png')",
+          }}
+        >
+          {/* Dark overlay for better contrast */}
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
+        
+        {/* Glass effect title over image */}
+        <div className="relative h-full flex items-center justify-center text-center px-6">
+          <div className="max-w-5xl">
+            <div className="inline-block backdrop-blur-xl bg-white/10 px-12 py-8 rounded-3xl border border-white/20 shadow-2xl">
+              <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-4 leading-none tracking-tighter">
+                {texts.servicesTitle}
+              </h2>
+              <p className="text-xl md:text-2xl text-white/90 font-light tracking-wide">
+                {texts.servicesSubtitle}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mb-32">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
               <Card 
                 key={index} 
-                className={`group hover:${service.shadowColor}-lg hover:shadow-strong transition-all duration-300 hover:-translate-y-2 bg-white border-border-light hover:border-border-medium`}
+                className="group relative bg-white border-2 border-black hover:bg-black transition-all duration-500 hover:-translate-y-2 overflow-hidden"
               >
-                <CardHeader className="text-center pb-4">
-                  <div className={`w-16 h-16 mx-auto ${service.bgColor} ${service.borderColor} border rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className={`h-8 w-8 ${service.color}`} />
+                <CardHeader className="text-center pb-8 pt-12 relative">
+                  <div className="relative mx-auto mb-8 w-24 h-24">
+                    <div className="w-full h-full bg-black group-hover:bg-white border-4 border-black flex items-center justify-center transition-all duration-500">
+                      <IconComponent className="h-12 w-12 text-white group-hover:text-black transition-colors duration-500" strokeWidth={2} />
+                    </div>
                   </div>
-                  <CardTitle className="text-xl font-bold text-text-primary font-display">
+                  
+                  <CardTitle className="text-2xl font-black text-black group-hover:text-white transition-colors duration-300 tracking-tight uppercase">
                     {service.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0">
-                  <p className="text-text-secondary mb-6 leading-relaxed">
+
+                <CardContent className="pt-0 pb-12 px-8 relative">
+                  <p className="text-gray-700 group-hover:text-gray-200 mb-8 leading-relaxed text-center font-light transition-colors duration-300">
                     {service.description}
                   </p>
-                  <ul className="space-y-3 mb-8">
+                  
+                  <ul className="space-y-4 mb-10">
                     {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-sm text-text-secondary">
-                        <div className={`w-2 h-2 rounded-full ${service.color.replace('text-', 'bg-')} mr-3 flex-shrink-0`}></div>
-                        <span className="leading-tight">{feature}</span>
+                      <li 
+                        key={featureIndex} 
+                        className="flex items-start text-sm"
+                      >
+                        <div className="flex-shrink-0 w-6 h-6 bg-black group-hover:bg-white flex items-center justify-center mt-0.5 mr-4 transition-colors duration-300">
+                          <Check className="h-4 w-4 text-white group-hover:text-black transition-colors duration-300" strokeWidth={3} />
+                        </div>
+                        <span className="leading-tight text-gray-900 group-hover:text-white font-medium transition-colors duration-300">
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
+                  
                   <Button 
-                    variant="outline" 
-                    className={`w-full border-border-default text-text-secondary hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-all duration-300 font-medium group-hover:shadow-medium`}
+                    className="w-full bg-transparent border-2 border-black text-black group-hover:bg-white group-hover:text-black group-hover:border-white font-bold py-6 text-base uppercase tracking-wider transition-all duration-300"
                   >
-                    {t('learnMore')}
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    <span className="flex items-center justify-center">
+                      {texts.learnMore}
+                      <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform" strokeWidth={2.5} />
+                    </span>
                   </Button>
                 </CardContent>
               </Card>
@@ -116,28 +196,55 @@ export function Services() {
           })}
         </div>
 
-        {/* Enhanced CTA Section */}
-        <div className="bg-primary-gradient rounded-3xl p-8 md:p-12 text-white text-center shadow-primary-lg relative overflow-hidden">
-          {/* Subtle background pattern */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+        {/* Bold CTA Section */}
+        <div className="relative bg-black p-16 md:p-24 text-white text-center border-4 border-black overflow-hidden">
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,.05)_50%,transparent_75%,transparent_100%)] bg-[length:250px_250px] animate-[shimmer_3s_linear_infinite]"></div>
+
           <div className="relative z-10">
-            <h3 className="text-display-sm mb-6 text-balance font-display">
-              Ready to Start Your Electrical Project?
+            <div className="inline-flex items-center gap-3 bg-white text-black px-8 py-3 mb-10 font-black uppercase tracking-widest text-sm">
+              <Zap className="h-5 w-5" strokeWidth={3} />
+              <span>{texts.getStarted}</span>
+            </div>
+
+            <h3 className="text-5xl md:text-6xl lg:text-7xl font-black mb-8 leading-none tracking-tighter uppercase">
+              {texts.ctaTitle}
             </h3>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed text-pretty">
-              Get a professional consultation and detailed quote for your electrical needs.
+            
+            <p className="text-xl md:text-2xl mb-14 max-w-3xl mx-auto leading-relaxed font-light">
+              {texts.ctaSubtitle}
             </p>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-2 border-white text-white hover:bg-white hover:text-primary-700 font-semibold px-8 py-3 hover:shadow-strong transition-all duration-300 hover:scale-105"
-            >
-              {t('requestQuote')}
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Button 
+                size="lg" 
+                className="group bg-white text-black hover:bg-black hover:text-white border-4 border-white font-black px-14 py-8 text-lg uppercase tracking-widest transition-all duration-300 hover:scale-105"
+              >
+                {texts.requestQuote}
+                <ArrowRight className="ml-4 h-6 w-6 group-hover:translate-x-2 transition-transform" strokeWidth={3} />
+              </Button>
+              
+              <Button 
+                size="lg" 
+                className="group bg-black text-white hover:bg-white hover:text-black border-4 border-white font-black px-14 py-8 text-lg uppercase tracking-widest transition-all duration-300 hover:scale-105"
+              >
+                {texts.viewProjects}
+                <ArrowRight className="ml-4 h-6 w-6 group-hover:translate-x-2 transition-transform" strokeWidth={3} />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes shimmer {
+          0% {
+            background-position: -250px 0;
+          }
+          100% {
+            background-position: 250px 0;
+          }
+        }
+      `}</style>
     </section>
   );
 }
