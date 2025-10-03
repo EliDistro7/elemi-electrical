@@ -155,7 +155,7 @@ const translations = {
     valuesTitle: 'Maadili Yetu',
     innovative: 'Ubunifu',
     skilled: 'Ustadi',
-    reliable: 'Kuaminika',
+    reliable: 'Uaminifu',
     integrity: 'Uadilifu',
     quality: 'Ubora',
     transparency: 'Uwazi',
