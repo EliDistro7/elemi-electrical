@@ -6,9 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { MapPin, Phone, Mail, Clock, Building2, MessageCircle, Send } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Contact() {
-  const [language, setLanguage] = useState('en');
+  const {language} = useLanguage();
 
   type Language = 'en' | 'sw';
 
