@@ -46,7 +46,7 @@ export function Projects() {
       location: 'Tarime, Mara Region',
       year: '2023',
       status: 'completed',
-      image: 'https://images.pexels.com/photos/2850290/pexels-photo-2850290.jpeg',
+      image: '/mara1.png',
       description: 'Complete electrical infrastructure upgrade including MV/LV distribution lines and transformer installations.',
     },
     {
@@ -76,7 +76,7 @@ export function Projects() {
       location: 'Kagera Region',
       year: '2022',
       status: 'completed',
-      image: 'https://images.pexels.com/photos/2850290/pexels-photo-2850290.jpeg',
+      image: '/mv1.png',
       description: 'Medium voltage transmission line construction and electrical infrastructure development.',
     },
     {
@@ -86,7 +86,7 @@ export function Projects() {
       location: 'Mwanza Region',
       year: '2023',
       status: 'ongoing',
-      image: 'https://images.pexels.com/photos/9875414/pexels-photo-9875414.jpeg',
+      image: '/solar2.png',
       description: 'Large-scale solar power system installation with battery storage and grid integration.',
     },
     {
