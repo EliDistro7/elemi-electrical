@@ -1,5 +1,5 @@
 'use client';
-
+import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -7,6 +7,35 @@ import { Zap, Sun, Building, Wind, Package, ArrowRight, Check } from 'lucide-rea
 
 export function Services() {
   const { t, language } = useLanguage();
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (videoRef.current) {
+          if (entry.isIntersecting) {
+            videoRef.current.play().catch(() => {});
+            setIsPlaying(true);
+          } else {
+            videoRef.current.pause();
+            setIsPlaying(false);
+          }
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, []);
 
   const translations = {
     en: {
@@ -112,32 +141,37 @@ export function Services() {
 
   return (
     <section id="services" className="relative py-32 bg-white overflow-hidden">
-      {/* Featured Image Hero with Glass Effect Title */}
-      <div className="relative h-[600px] mb-32 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/featured-services.png')",
-          }}
-        >
-          {/* Dark overlay for better contrast */}
-          <div className="absolute inset-0 bg-black/40"></div>
-        </div>
-        
-        {/* Glass effect title over image */}
-        <div className="relative h-full flex items-center justify-center text-center px-6">
-          <div className="max-w-5xl">
-            <div className="inline-block backdrop-blur-xl bg-white/10 px-12 py-8 rounded-3xl border border-white/20 shadow-2xl">
-              <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-4 leading-none tracking-tighter">
-                {texts.servicesTitle}
-              </h2>
-              <p className="text-xl md:text-2xl text-white/90 font-light tracking-wide">
-                {texts.servicesSubtitle}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+  {/* Hero with Video Background */}
+<div className="relative h-[600px] mb-32 overflow-hidden">
+  <video
+    ref={videoRef}
+    src="/promo1.mp4"
+    className="absolute inset-0 w-full h-full object-cover"
+    muted
+    playsInline
+    loop
+  />
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-black/40"></div>
+
+  {/* Glass effect title - top left */}
+  <div className="absolute top-6 left-6 md:top-12 md:left-12">
+    <div className="inline-block backdrop-blur-xs bg-white/10 px-6 py-4 md:px-10 md:py-6 lg:px-12 lg:py-8 rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl">
+      <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-none tracking-tighter">
+        {texts.servicesTitle}
+      </h2>
+    </div>
+  </div>
+
+  {/* Glass effect subtitle - bottom right */}
+  <div className="absolute bottom-6 right-6 md:bottom-12 md:right-12">
+    <div className="inline-block backdrop-blur-xs bg-white/10 px-6 py-4 md:px-10 md:py-6 lg:px-12 lg:py-8 rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl max-w-xs md:max-w-md lg:max-w-lg">
+      <p className="text-base md:text-lg lg:text-xl text-white/90 font-light tracking-wide text-right">
+        {texts.servicesSubtitle}
+      </p>
+    </div>
+  </div>
+</div>
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Services Grid */}

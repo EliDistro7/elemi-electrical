@@ -110,7 +110,7 @@ export function About() {
                       <div className="w-20 h-20 bg-black group-hover:bg-white border-4 border-black mx-auto mb-6 flex items-center justify-center transition-all duration-300">
                         <IconComponent className="h-10 w-10 text-white group-hover:text-black transition-colors duration-300" strokeWidth={2.5} />
                       </div>
-                      <h4 className="font-black text-xl text-black group-hover:text-white tracking-tight uppercase transition-colors duration-300">
+                      <h4 className="font-black text-lg text-black group-hover:text-white tracking-tight uppercase transition-colors duration-300">
                         {value.title}
                       </h4>
                     </CardContent>
