@@ -10,7 +10,44 @@ import { MapPin, Phone, Mail, Clock, Building2, MessageCircle, Send } from 'luci
 export function Contact() {
   const [language, setLanguage] = useState('en');
 
-  const translations = {
+  type Language = 'en' | 'sw';
+
+  type TranslationTexts = {
+    contactTitle: string;
+    contactSubtitle: string;
+    getInTouch: string;
+    headOffice: string;
+    branchOffice: string;
+    phone: string;
+    email: string;
+    businessHours: string;
+    monday: string;
+    saturday: string;
+    sunday: string;
+    emergencyOnly: string;
+    whatsappUs: string;
+    requestQuote: string;
+    quoteDescription: string;
+    fullName: string;
+    phoneNumber: string;
+    emailAddress: string;
+    company: string;
+    serviceRequired: string;
+    projectDetails: string;
+    submitQuote: string;
+    selectService: string;
+    transmission: string;
+    solar: string;
+    commercial: string;
+    hvac: string;
+    supply: string;
+    other: string;
+    locations: string;
+    mwanzaOffice: string;
+    singidaOffice: string;
+  };
+
+  const translations: Record<Language, TranslationTexts> = {
     en: {
       contactTitle: 'Contact Us',
       contactSubtitle: 'Get in touch with our team for professional electrical solutions and project consultations',
@@ -81,7 +118,7 @@ export function Contact() {
     }
   };
 
-  const texts = translations[language] || translations.en;
+  const texts = translations[language as Language] || translations.en;
 
   const contactInfo = [
     {
