@@ -99,7 +99,7 @@ export function Services() {
       getStarted: 'Anza Leo',
       ctaTitle: 'Uko Tayari Kuendesha Mradi Wako?',
       ctaSubtitle: 'Pata ushauri wa kitaalamu na nukuu ya kina kwa mahitaji yako ya umeme. Timu yetu iko tayari kuleta maono yako kuwa ukweli.',
-      requestQuote: 'Omba Nukuu',
+      requestQuote: 'Omba Bei',
       viewProjects: 'Tazama Miradi Yetu',
     }
   };
