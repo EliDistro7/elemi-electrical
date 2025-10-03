@@ -29,7 +29,7 @@ export function Header() {
       equipment: 'Vifaa',
       contact: 'Wasiliana',
       getQuote: 'Pata Bei',
-      tagline: 'Ubunifu. Ujuzi. Kuaminika.'
+      tagline: 'Ubunifu. Ujuzi. Uaminifu.'
     }
   };
 
