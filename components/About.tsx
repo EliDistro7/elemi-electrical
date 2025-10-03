@@ -21,7 +21,7 @@ export function About() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="text-center mb-32">
-          <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-black mb-8 tracking-tighter uppercase">
+          <h2 className="text-4xl md:text-7xl lg:text-8xl font-black text-black mb-8 tracking-tighter uppercase">
             {t('aboutTitle')}
           </h2>
           <p className="text-2xl md:text-3xl font-light text-gray-700 max-w-4xl mx-auto leading-relaxed">
@@ -43,7 +43,7 @@ export function About() {
                     <img
                       src="/elemi-boss.png"
                       alt="Managing Director"
-                      className="w-32 h-32 sm:w-40 sm:h-40 object-cover border-4 border-black"
+                      className="w-32 h-32 sm:w-60 sm:h-60 object-cover border-4 border-black"
                     />
                     <div className="absolute -bottom-3 -right-3 w-10 h-10 bg-black border-4 border-white flex items-center justify-center">
                       <Award className="w-5 h-5 text-white" strokeWidth={3} />
@@ -53,9 +53,7 @@ export function About() {
                     <p className="font-black text-xl sm:text-2xl text-black mb-2 uppercase tracking-tight leading-tight">
                       {t('directorName')}
                     </p>
-                    <p className="text-sm sm:text-base font-bold text-gray-700 uppercase tracking-wider sm:tracking-widest">
-                      Managing & Technical Director
-                    </p>
+                   
                   </div>
                 </div>
               </div>
