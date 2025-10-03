@@ -50,9 +50,7 @@ export function Header() {
         <div className="flex justify-between items-center py-6">
           {/* Logo */}
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-black flex items-center justify-center">
-              <Zap className="h-7 w-7 text-white" strokeWidth={3} fill="white" />
-            </div>
+         
             <div>
               <h1 className="text-2xl md:text-3xl font-black text-black leading-none tracking-tighter uppercase">
                 ELEMI ELECTRICAL

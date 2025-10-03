@@ -37,30 +37,27 @@ export function About() {
               <h3 className="text-4xl md:text-5xl font-black text-black mb-12 tracking-tight uppercase border-b-4 border-black pb-4">
                 {t('directorMessage')}
               </h3>
-              <div className="bg-white border-4 border-black p-10 hover:-translate-y-2 transition-all duration-300">
-                <div className="flex items-start space-x-8 mb-10">
+             <div className="bg-white border-4 border-black p-6 md:p-10 hover:-translate-y-2 transition-all duration-300">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-6 sm:space-y-0 sm:space-x-8 mb-10">
                   <div className="relative flex-shrink-0">
                     <img
                       src="/elemi-boss.png"
                       alt="Managing Director"
-                      className="w-40 h-40 object-cover border-4 border-black"
+                      className="w-32 h-32 sm:w-40 sm:h-40 object-cover border-4 border-black"
                     />
                     <div className="absolute -bottom-3 -right-3 w-10 h-10 bg-black border-4 border-white flex items-center justify-center">
                       <Award className="w-5 h-5 text-white" strokeWidth={3} />
                     </div>
                   </div>
-                  <div>
-                    <p className="font-black text-2xl text-black mb-2 uppercase tracking-tight">
+                  <div className="text-center sm:text-left flex-1">
+                    <p className="font-black text-xl sm:text-2xl text-black mb-2 uppercase tracking-tight leading-tight">
                       {t('directorName')}
                     </p>
-                    <p className="text-base font-bold text-gray-700 uppercase tracking-widest">
+                    <p className="text-sm sm:text-base font-bold text-gray-700 uppercase tracking-wider sm:tracking-widest">
                       Managing & Technical Director
                     </p>
                   </div>
                 </div>
-                <blockquote className="text-gray-800 leading-relaxed font-medium text-lg border-l-8 border-black pl-8">
-                  "At Elemi Electrical, we are committed to delivering professional electrical contracting services with unmatched technical competence and unwavering ethical standards. Our team's dedication to innovation and quality has established us as Tanzania's trusted electrical engineering partner."
-                </blockquote>
               </div>
             </div>
 
