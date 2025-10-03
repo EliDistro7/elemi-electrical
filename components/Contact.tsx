@@ -97,7 +97,7 @@ export function Contact() {
     {
       icon: Phone,
       title: texts.phone,
-      content: '+255 764 420 826 <br/> +255 655 420 826 ,br/> +255 620 636 307',
+      content: '+255 764 420 826 <br/> +255 655 420 826 ,<br/> +255 620 636 307',
     },
     {
       icon: Mail,
