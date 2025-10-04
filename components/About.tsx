@@ -9,6 +9,7 @@ export function About() {
   const {language} = useLanguage();
 
   type Language = 'en' | 'sw';
+
   type TranslationKeys =
     | 'aboutTitle'
     | 'aboutSubtitle'
@@ -108,9 +109,11 @@ export function About() {
               <div className="bg-white border-2 sm:border-4 border-black p-4 sm:p-6 md:p-10 hover:-translate-y-2 transition-all duration-300">
                 <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 md:space-x-8 mb-6 sm:mb-8 md:mb-10">
                   <div className="relative flex-shrink-0">
-                    <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 bg-gray-200 border-2 sm:border-4 border-black flex items-center justify-center">
-                      <Award className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-gray-400" />
-                    </div>
+                    <img
+                      src="/elemi-boss.png"
+                      alt="Managing Director"
+                      className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 object-cover border-2 sm:border-4 border-black"
+                    />
                     <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-8 h-8 sm:w-10 sm:h-10 bg-black border-2 sm:border-4 border-white flex items-center justify-center">
                       <Award className="w-4 h-4 sm:w-5 sm:h-5 text-white" strokeWidth={3} />
                     </div>
