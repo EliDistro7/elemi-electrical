@@ -97,7 +97,7 @@ export function Contact() {
       sunday: 'Jumapili',
       emergencyOnly: 'Dharura Tu',
       whatsappUs: 'WhatsApp',
-      requestQuote: 'Omba Nukuu',
+      requestQuote: 'Omba Bei',
       quoteDescription: 'Tuambie kuhusu mradi wako wa umeme na tutakujibu haraka.',
       fullName: 'Jina Kamili',
       phoneNumber: 'Nambari ya Simu',
