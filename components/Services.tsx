@@ -3,9 +3,11 @@ import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Zap, Sun, Building, Wind, Package, ArrowRight, Check } from 'lucide-react';
+import { Zap, Sun, Building, Wind, Package, ArrowRight, Check, Route } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export function Services() {
+  const router = useRouter();
   const { t, language } = useLanguage();
     const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -249,7 +251,10 @@ export function Services() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button 
+              <Button
+                  onClick={() => {
+                    router.push('/#quote');
+                  }}
                 size="lg" 
                 className="group bg-white text-black hover:bg-black hover:text-white border-4 border-white font-black px-14 py-8 text-lg uppercase tracking-widest transition-all duration-300 hover:scale-105"
               >
