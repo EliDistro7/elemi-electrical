@@ -117,7 +117,11 @@ export function Header() {
                 </a>
               ))}
               <div className="pt-4">
-                <Button className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black w-full px-8 py-6 text-lg uppercase tracking-widest transition-all duration-300">
+                <Button 
+                  onClick={() => {
+                    router.push('/#quote');
+                  }}
+                className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black w-full px-8 py-6 text-lg uppercase tracking-widest transition-all duration-300">
                   {texts.getQuote}
                 </Button>
               </div>
