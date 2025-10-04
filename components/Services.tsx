@@ -263,6 +263,9 @@ export function Services() {
               </Button>
               
               <Button 
+                  onClick={() => {
+                    router.push('/#projects');
+                  }}
                 size="lg" 
                 className="group bg-black text-white hover:bg-white hover:text-black border-4 border-white font-black px-14 py-8 text-lg uppercase tracking-widest transition-all duration-300 hover:scale-105"
               >
