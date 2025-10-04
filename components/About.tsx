@@ -32,6 +32,7 @@ export function About() {
   type Translations = {
     [lang in Language]: Record<TranslationKeys, string>;
   };
+  
 
   const translations: Translations = {
     en: {

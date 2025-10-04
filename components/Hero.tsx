@@ -4,6 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Phone, Zap, Building2, Award } from 'lucide-react';
 import { useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import Swiper from 'swiper';
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -11,6 +12,7 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
 export function Hero() {
+  const router = useRouter();
   const { t } = useLanguage();
   const swiperRef = useRef<Swiper | null>(null);
 
@@ -149,6 +151,9 @@ export function Hero() {
                         <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                       </Button>
                       <Button 
+                      onClick={() => {
+                        router.push('/#quote');
+                      }}    
                         size="lg" 
                         variant="outline" 
                         className="group border-2 border-white/30 bg-white/5 backdrop-blur-sm text-white hover:bg-white hover:text-blue-900 px-8 py-6 text-base rounded-full transition-all duration-300 hover:scale-105"

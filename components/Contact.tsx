@@ -230,7 +230,7 @@ export function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div>
+          <div id='quote'>
             <Card className="bg-white border-2 sm:border-4 border-black">
               <CardHeader className="pb-4 sm:pb-6">
                 <CardTitle className="text-xl sm:text-2xl md:text-3xl font-black text-black tracking-tight mb-3 sm:mb-4 uppercase">

@@ -5,8 +5,10 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageToggle } from './LanguageToggle';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Zap } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export function Header() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language } = useLanguage();
 
@@ -45,7 +47,7 @@ export function Header() {
   ];
 
   return (
-    <header className="bg-white border-b-4 border-black sticky top-0 z-50">
+    <header className="bg-white border-b-4 border-black ">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex justify-between items-center py-6">
           {/* Logo */}
@@ -74,7 +76,11 @@ export function Header() {
               </a>
             ))}
             <LanguageToggle />
-            <Button className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black px-8 py-6 text-base uppercase tracking-widest transition-all duration-300 hover:scale-105">
+            <Button 
+              onClick={() => {
+                router.push('/#quote');
+              }}
+             className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black px-8 py-6 text-base uppercase tracking-widest transition-all duration-300 hover:scale-105">
               {texts.getQuote}
             </Button>
           </nav>
