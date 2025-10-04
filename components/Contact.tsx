@@ -5,11 +5,25 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { MapPin, Phone, Mail, Clock, Building2, MessageCircle, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Building2, MessageCircle, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Contact() {
   const {language} = useLanguage();
+  
+  // Form state
+  const [formData, setFormData] = useState({
+    fullName: '',
+    phoneNumber: '',
+    email: '',
+    company: '',
+    service: '',
+    projectDetails: ''
+  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   type Language = 'en' | 'sw';
 
@@ -46,6 +60,11 @@ export function Contact() {
     locations: string;
     mwanzaOffice: string;
     singidaOffice: string;
+    successMessage: string;
+    errorMessage: string;
+    requiredField: string;
+    invalidEmail: string;
+    invalidPhone: string;
   };
 
   const translations: Record<Language, TranslationTexts> = {
@@ -82,6 +101,11 @@ export function Contact() {
       locations: 'Our Locations',
       mwanzaOffice: 'Mwanza Head Office',
       singidaOffice: 'Singida Branch Office',
+      successMessage: 'Your quote request has been sent successfully! We\'ll contact you soon.',
+      errorMessage: 'Failed to send your request. Please try again or contact us directly.',
+      requiredField: 'This field is required',
+      invalidEmail: 'Please enter a valid email address',
+      invalidPhone: 'Please enter a valid phone number',
     },
     sw: {
       contactTitle: 'Wasiliana Nasi',
@@ -116,6 +140,11 @@ export function Contact() {
       locations: 'Maeneo Yetu',
       mwanzaOffice: 'Ofisi Kuu Mwanza',
       singidaOffice: 'Ofisi ya Tawi Singida',
+      successMessage: 'Ombi lako limetumwa kwa mafanikio! Tutawasiliana nawe hivi karibuni.',
+      errorMessage: 'Imeshindikana kutuma ombi lako. Tafadhali jaribu tena au wasiliana nasi moja kwa moja.',
+      requiredField: 'Sehemu hii ni lazima',
+      invalidEmail: 'Tafadhali ingiza anwani sahihi ya barua pepe',
+      invalidPhone: 'Tafadhali ingiza nambari sahihi ya simu',
     }
   };
 
@@ -143,6 +172,125 @@ export function Contact() {
       content: 'baraka@elemielectrical.co.tz / elemicompany19@gmail.com',
     }
   ];
+
+  // Validation function
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = texts.requiredField;
+    }
+    
+    if (!formData.phoneNumber.trim()) {
+      newErrors.phoneNumber = texts.requiredField;
+    } else if (!/^(\+?\d{10,15})$/.test(formData.phoneNumber.replace(/\s/g, ''))) {
+      newErrors.phoneNumber = texts.invalidPhone;
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = texts.requiredField;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = texts.invalidEmail;
+    }
+    
+    if (!formData.service || formData.service === texts.selectService) {
+      newErrors.service = texts.requiredField;
+    }
+    
+    if (!formData.projectDetails.trim()) {
+      newErrors.projectDetails = texts.requiredField;
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handle input changes
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear error for this field when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+    // Reset submit status when user makes changes
+    if (submitStatus !== 'idle') {
+      setSubmitStatus('idle');
+    }
+  };
+
+  // Format message for WhatsApp
+  const formatWhatsAppMessage = () => {
+    const currentDate = new Date().toLocaleString();
+    
+    const message = `
+*NEW QUOTE REQUEST - ELEMI ELECTRICAL*
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+*Date & Time:* ${currentDate}
+
+*CLIENT INFORMATION*
+• *Full Name:* ${formData.fullName}
+• *Phone Number:* ${formData.phoneNumber}
+• *Email:* ${formData.email}
+• *Company/Organization:* ${formData.company || 'Not specified'}
+
+*PROJECT DETAILS*
+• *Service Required:* ${formData.service}
+• *Project Description:*
+${formData.projectDetails}
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+*Action Required:* Please review and respond to this quote request within 24 hours.
+    `.trim();
+    
+    return encodeURIComponent(message);
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    
+    try {
+      // Format the message
+      const message = formatWhatsAppMessage();
+      const whatsappNumber = '255764420826'; // Remove + and spaces
+      
+      // Create WhatsApp URL
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+      
+      // Open WhatsApp in new tab
+      window.open(whatsappUrl, '_blank');
+      
+      // Show success message
+      setSubmitStatus('success');
+      
+      // Reset form after successful submission
+      setTimeout(() => {
+        setFormData({
+          fullName: '',
+          phoneNumber: '',
+          email: '',
+          company: '',
+          service: '',
+          projectDetails: ''
+        });
+        setSubmitStatus('idle');
+      }, 5000);
+      
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white">
@@ -221,7 +369,8 @@ export function Contact() {
 
             {/* WhatsApp CTA */}
             <Button 
-              size="lg" 
+              size="lg"
+              onClick={() => window.open('https://wa.me/255764420826', '_blank')}
               className="w-full bg-black text-white hover:bg-white hover:text-black border-2 sm:border-4 border-black font-black text-xs sm:text-sm md:text-base lg:text-lg tracking-widest uppercase transition-all duration-300 py-4 sm:py-6 md:py-8 h-auto"
             >
               <MessageCircle className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 shrink-0" strokeWidth={3} />
@@ -241,25 +390,35 @@ export function Contact() {
                 </p>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4 sm:space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label className="block text-xs sm:text-sm font-black text-black mb-2 sm:mb-3 uppercase tracking-wider">
                         {texts.fullName} *
                       </label>
                       <Input 
-                        placeholder="Your full name" 
-                        className="h-12 sm:h-14 border-2 sm:border-4 border-black focus:border-gray-600 font-semibold text-sm sm:text-base"
+                        placeholder="Your full name"
+                        value={formData.fullName}
+                        onChange={(e) => handleInputChange('fullName', e.target.value)}
+                        className={`h-12 sm:h-14 border-2 sm:border-4 ${errors.fullName ? 'border-red-500' : 'border-black'} focus:border-gray-600 font-semibold text-sm sm:text-base`}
                       />
+                      {errors.fullName && (
+                        <p className="text-red-500 text-xs mt-1 font-semibold">{errors.fullName}</p>
+                      )}
                     </div>
                     <div>
                       <label className="block text-xs sm:text-sm font-black text-black mb-2 sm:mb-3 uppercase tracking-wider">
                         {texts.phoneNumber} *
                       </label>
                       <Input 
-                        placeholder="+255 XXX XXX XXX" 
-                        className="h-12 sm:h-14 border-2 sm:border-4 border-black focus:border-gray-600 font-semibold text-sm sm:text-base"
+                        placeholder="+255 XXX XXX XXX"
+                        value={formData.phoneNumber}
+                        onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
+                        className={`h-12 sm:h-14 border-2 sm:border-4 ${errors.phoneNumber ? 'border-red-500' : 'border-black'} focus:border-gray-600 font-semibold text-sm sm:text-base`}
                       />
+                      {errors.phoneNumber && (
+                        <p className="text-red-500 text-xs mt-1 font-semibold">{errors.phoneNumber}</p>
+                      )}
                     </div>
                   </div>
                   
@@ -268,10 +427,15 @@ export function Contact() {
                       {texts.emailAddress} *
                     </label>
                     <Input 
-                      type="email" 
-                      placeholder="your.email@example.com" 
-                      className="h-12 sm:h-14 border-2 sm:border-4 border-black focus:border-gray-600 font-semibold text-sm sm:text-base"
+                      type="email"
+                      placeholder="your.email@example.com"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      className={`h-12 sm:h-14 border-2 sm:border-4 ${errors.email ? 'border-red-500' : 'border-black'} focus:border-gray-600 font-semibold text-sm sm:text-base`}
                     />
+                    {errors.email && (
+                      <p className="text-red-500 text-xs mt-1 font-semibold">{errors.email}</p>
+                    )}
                   </div>
                   
                   <div>
@@ -279,7 +443,9 @@ export function Contact() {
                       {texts.company}
                     </label>
                     <Input 
-                      placeholder="Your company name" 
+                      placeholder="Your company name"
+                      value={formData.company}
+                      onChange={(e) => handleInputChange('company', e.target.value)}
                       className="h-12 sm:h-14 border-2 sm:border-4 border-black focus:border-gray-600 font-semibold text-sm sm:text-base"
                     />
                   </div>
@@ -288,15 +454,22 @@ export function Contact() {
                     <label className="block text-xs sm:text-sm font-black text-black mb-2 sm:mb-3 uppercase tracking-wider">
                       {texts.serviceRequired} *
                     </label>
-                    <select className="w-full h-12 sm:h-14 px-3 sm:px-4 border-2 sm:border-4 border-black focus:outline-none focus:border-gray-600 font-bold text-gray-700 bg-white transition-all duration-200 uppercase text-xs sm:text-sm md:text-base">
-                      <option>{texts.selectService}</option>
-                      <option>{texts.transmission}</option>
-                      <option>{texts.solar}</option>
-                      <option>{texts.commercial}</option>
-                      <option>{texts.hvac}</option>
-                      <option>{texts.supply}</option>
-                      <option>{texts.other}</option>
+                    <select 
+                      value={formData.service}
+                      onChange={(e) => handleInputChange('service', e.target.value)}
+                      className={`w-full h-12 sm:h-14 px-3 sm:px-4 border-2 sm:border-4 ${errors.service ? 'border-red-500' : 'border-black'} focus:outline-none focus:border-gray-600 font-bold text-gray-700 bg-white transition-all duration-200 uppercase text-xs sm:text-sm md:text-base`}
+                    >
+                      <option value="">{texts.selectService}</option>
+                      <option value={texts.transmission}>{texts.transmission}</option>
+                      <option value={texts.solar}>{texts.solar}</option>
+                      <option value={texts.commercial}>{texts.commercial}</option>
+                      <option value={texts.hvac}>{texts.hvac}</option>
+                      <option value={texts.supply}>{texts.supply}</option>
+                      <option value={texts.other}>{texts.other}</option>
                     </select>
+                    {errors.service && (
+                      <p className="text-red-500 text-xs mt-1 font-semibold">{errors.service}</p>
+                    )}
                   </div>
                   
                   <div>
@@ -306,18 +479,42 @@ export function Contact() {
                     <Textarea 
                       placeholder="Please describe your project requirements, timeline, and any specific needs..."
                       rows={5}
-                      className="border-2 sm:border-4 border-black focus:border-gray-600 font-semibold resize-none text-sm sm:text-base"
+                      value={formData.projectDetails}
+                      onChange={(e) => handleInputChange('projectDetails', e.target.value)}
+                      className={`border-2 sm:border-4 ${errors.projectDetails ? 'border-red-500' : 'border-black'} focus:border-gray-600 font-semibold resize-none text-sm sm:text-base`}
                     />
+                    {errors.projectDetails && (
+                      <p className="text-red-500 text-xs mt-1 font-semibold">{errors.projectDetails}</p>
+                    )}
                   </div>
+
+                  {/* Status Messages */}
+                  {submitStatus === 'success' && (
+                    <div className="bg-green-50 border-2 border-green-500 p-4 rounded-none flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 shrink-0" />
+                      <p className="text-sm font-semibold text-green-800">{texts.successMessage}</p>
+                    </div>
+                  )}
+
+                  {submitStatus === 'error' && (
+                    <div className="bg-red-50 border-2 border-red-500 p-4 rounded-none flex items-start">
+                      <AlertCircle className="h-5 w-5 text-red-500 mr-2 mt-0.5 shrink-0" />
+                      <p className="text-sm font-semibold text-red-800">{texts.errorMessage}</p>
+                    </div>
+                  )}
                   
                   <Button 
-                    size="lg" 
-                    className="w-full bg-black text-white hover:bg-white hover:text-black border-2 sm:border-4 border-black font-black text-xs sm:text-sm md:text-base lg:text-lg tracking-widest uppercase transition-all duration-300 py-4 sm:py-6 md:py-8 mt-4 sm:mt-6 md:mt-8 hover:scale-105 h-auto"
+                    type="submit"
+                    size="lg"
+                    disabled={isSubmitting}
+                    className="w-full bg-black text-white hover:bg-white hover:text-black border-2 sm:border-4 border-black font-black text-xs sm:text-sm md:text-base lg:text-lg tracking-widest uppercase transition-all duration-300 py-4 sm:py-6 md:py-8 mt-4 sm:mt-6 md:mt-8 hover:scale-105 h-auto disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 shrink-0" strokeWidth={3} />
-                    <span className="break-words">{texts.submitQuote}</span>
+                    <span className="break-words">
+                      {isSubmitting ? 'Sending...' : texts.submitQuote}
+                    </span>
                   </Button>
-                </div>
+                </form>
               </CardContent>
             </Card>
           </div>
@@ -357,7 +554,6 @@ export function Contact() {
                 ></iframe>
               </div>
             </div>
-
             {/* Singida Office Map */}
             <div className="bg-white border-2 sm:border-4 border-black overflow-hidden hover:-translate-y-2 transition-all duration-300">
               <div className="bg-black text-white p-4 sm:p-6 border-b-2 sm:border-b-4 border-black">

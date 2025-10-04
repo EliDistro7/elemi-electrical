@@ -175,6 +175,7 @@ export function Services() {
   </div>
 </div>
 
+
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mb-32">
@@ -218,14 +219,7 @@ export function Services() {
                     ))}
                   </ul>
                   
-                  <Button 
-                    className="w-full bg-transparent border-2 border-black text-black group-hover:bg-white group-hover:text-black group-hover:border-white font-bold py-6 text-base uppercase tracking-wider transition-all duration-300"
-                  >
-                    <span className="flex items-center justify-center">
-                      {texts.learnMore}
-                      <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform" strokeWidth={2.5} />
-                    </span>
-                  </Button>
+                 
                 </CardContent>
               </Card>
             );
