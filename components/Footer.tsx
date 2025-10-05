@@ -182,7 +182,7 @@ export function Footer() {
         <div className="border-t border-gray-700 pt-10 mt-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-6 md:mb-0 text-center md:text-left">
-              © 2024 Elemi Electrical Company Limited. {texts.allRightsReserved}
+              © 2025 Elemi Electrical Company Limited. {texts.allRightsReserved}
             </div>
             
             {/* Social Links */}

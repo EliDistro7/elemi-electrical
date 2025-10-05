@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 
 interface PDFBookProps {
@@ -7,6 +7,51 @@ interface PDFBookProps {
 
 const PDFBook = ({ pdfFiles }: PDFBookProps) => {
   const [currentPdfIndex, setCurrentPdfIndex] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Intersection Observer to trigger user interaction
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasInteracted) {
+            // Simulate user interaction by triggering a click
+            const iframe = iframeRef.current;
+            if (iframe) {
+              // Create and dispatch a click event
+              const clickEvent = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+              });
+              iframe.dispatchEvent(clickEvent);
+              setHasInteracted(true);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the element is visible
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, [hasInteracted]);
+
+  // Reset interaction flag when PDF changes
+  useEffect(() => {
+    setHasInteracted(false);
+  }, [currentPdfIndex]);
 
   const handleNext = () => {
     if (currentPdfIndex < pdfFiles.length - 1) {
@@ -27,9 +72,10 @@ const PDFBook = ({ pdfFiles }: PDFBookProps) => {
         <h1 className="text-3xl font-bold">OUR CERTIFICATES</h1>
       </div>
 
-      <div className="relative w-full">
+      <div ref={containerRef} className="relative w-full">
         <div className="bg-white rounded-lg shadow-2xl overflow-hidden" style={{ height: '70vh' }}>
           <iframe
+            ref={iframeRef}
             src={pdfFiles[currentPdfIndex]}
             className="w-full h-full border-0"
             title={`Certificate ${currentPdfIndex + 1}`}
