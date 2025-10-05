@@ -1,10 +1,35 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Zap, MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Zap, MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Award, ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const router = useRouter();
+
+  const translations = {
+    en: {
+      quickLinks: 'Quick Links',
+      services: 'Services',
+      allRightsReserved: 'All Rights Reserved',
+      ourCertificate: 'Our Certificate',
+      viewAllCertificates: 'View All Certificates',
+      certDescription: 'Licensed & Certified Electrical Contractor',
+      tagline: 'Innovative. Skilled. Reliable.'
+    },
+    sw: {
+      quickLinks: 'Viungo vya Haraka',
+      services: 'Huduma',
+      allRightsReserved: 'Haki Zote Zimehifadhiwa',
+      ourCertificate: 'Cheti Chetu',
+      viewAllCertificates: 'Tazama Vyeti Vyote',
+      certDescription: 'Mkandarasi wa Umeme Aliye na Leseni',
+      tagline: 'Ubunifu. Ujuzi. Uaminifu.'
+    }
+  };
+
+  const texts = translations[language] || translations.en;
 
   const quickLinks = [
     { name: t('home'), href: '#home' },
@@ -37,7 +62,7 @@ export function Footer() {
               </div>
               <div>
                 <h2 className="text-display-xs text-white font-display">ELEMI ELECTRICAL</h2>
-                <p className="text-text-tertiary text-sm font-medium tracking-wide">Innovative. Skilled. Reliable.</p>
+                <p className="text-text-tertiary text-sm font-medium tracking-wide">{texts.tagline}</p>
               </div>
             </div>
             
@@ -75,7 +100,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-white font-display">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-6 text-white font-display">{texts.quickLinks}</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -93,7 +118,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-white font-display">{t('services')}</h3>
+            <h3 className="text-lg font-semibold mb-6 text-white font-display">{texts.services}</h3>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service}>
@@ -110,11 +135,54 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Certificate Section */}
+        <div className="mt-12 pt-12 border-t border-gray-700">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Certificate Info */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-yellow-500/20 p-3 rounded-xl">
+                  <Award className="h-6 w-6 text-yellow-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-white font-display">{texts.ourCertificate}</h3>
+              </div>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                {texts.certDescription}
+              </p>
+              <button
+                onClick={() => router.push('/certs')}
+                className="group inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/50 hover:scale-105"
+              >
+                <span>{texts.viewAllCertificates}</span>
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            {/* Certificate Preview */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-yellow-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+              <div className="relative bg-gray-800 rounded-2xl overflow-hidden border-2 border-gray-700 hover:border-primary-500 transition-all duration-300 shadow-2xl">
+                <div className="aspect-[4/3] relative">
+                  <iframe
+                    src="/completion.pdf"
+                    className="w-full h-full"
+                    title="Company Certificate"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent pointer-events-none"></div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gray-900 to-transparent">
+                  <p className="text-xs text-gray-400 text-center">CRB Registration: E2/96/06/2024</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Section */}
         <div className="border-t border-gray-700 pt-10 mt-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-6 md:mb-0 text-center md:text-left">
-              © 2024 Elemi Electrical Company Limited. {t('allRightsReserved')}
+              © 2024 Elemi Electrical Company Limited. {texts.allRightsReserved}
             </div>
             
             {/* Social Links */}

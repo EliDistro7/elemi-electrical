@@ -532,7 +532,8 @@ ${formData.projectDetails}
                 <div className="flex items-center">
                   <MapPin className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 mr-3 sm:mr-4 shrink-0" strokeWidth={2.5} />
                   <div className="min-w-0">
-                    <p className="font-black text-base sm:text-lg md:text-xl tracking-tight uppercase break-words">
+                    <p className="font-black text-base sm:t
+                    ext-lg md:text-xl tracking-tight uppercase break-words">
                       {texts.mwanzaOffice}
                     </p>
                     <p className="text-xs sm:text-sm font-bold text-gray-300 uppercase tracking-wide">
