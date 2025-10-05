@@ -158,7 +158,7 @@ export function Footer() {
               </button>
             </div>
 
-            {/* Certificate Preview */}
+            {/* Certificate Preview 
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-yellow-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
               <div className="relative bg-gray-800 rounded-2xl overflow-hidden border-2 border-gray-700 hover:border-primary-500 transition-all duration-300 shadow-2xl">
@@ -175,6 +175,7 @@ export function Footer() {
                 </div>
               </div>
             </div>
+            */}
           </div>
         </div>
 
