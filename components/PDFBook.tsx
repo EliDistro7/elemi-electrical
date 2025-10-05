@@ -7,33 +7,28 @@ interface PDFBookProps {
 
 const PDFBook = ({ pdfFiles }: PDFBookProps) => {
   const [currentPdfIndex, setCurrentPdfIndex] = useState(0);
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [loadedPdfs, setLoadedPdfs] = useState<Set<number>>(new Set());
   const containerRef = useRef<HTMLDivElement>(null);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // Intersection Observer to trigger user interaction
+  // Load PDF when component comes into view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasInteracted) {
-            // Simulate user interaction by triggering a click
-            const iframe = iframeRef.current;
-            if (iframe) {
-              // Create and dispatch a click event
-              const clickEvent = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-                view: window
-              });
-              iframe.dispatchEvent(clickEvent);
-              setHasInteracted(true);
-            }
+          if (entry.isIntersecting && !loadedPdfs.has(currentPdfIndex)) {
+            // Automatically click the load button when in view
+            setTimeout(() => {
+              if (buttonRef.current) {
+                buttonRef.current.click();
+              }
+            }, 100);
           }
         });
       },
       {
-        threshold: 0.1, // Trigger when 10% of the element is visible
+        threshold: 0.1,
       }
     );
 
@@ -46,12 +41,17 @@ const PDFBook = ({ pdfFiles }: PDFBookProps) => {
         observer.unobserve(containerRef.current);
       }
     };
-  }, [hasInteracted]);
+  }, [currentPdfIndex, loadedPdfs]);
 
-  // Reset interaction flag when PDF changes
+  // Reset loaded state when PDF changes
   useEffect(() => {
-    setHasInteracted(false);
-  }, [currentPdfIndex]);
+    setIsLoaded(loadedPdfs.has(currentPdfIndex));
+  }, [currentPdfIndex, loadedPdfs]);
+
+  const handleLoadPdf = () => {
+    setIsLoaded(true);
+    setLoadedPdfs(prev => new Set(prev).add(currentPdfIndex));
+  };
 
   const handleNext = () => {
     if (currentPdfIndex < pdfFiles.length - 1) {
@@ -74,12 +74,24 @@ const PDFBook = ({ pdfFiles }: PDFBookProps) => {
 
       <div ref={containerRef} className="relative w-full">
         <div className="bg-white rounded-lg shadow-2xl overflow-hidden" style={{ height: '70vh' }}>
-          <iframe
-            ref={iframeRef}
-            src={pdfFiles[currentPdfIndex]}
-            className="w-full h-full border-0"
-            title={`Certificate ${currentPdfIndex + 1}`}
-          />
+          {!isLoaded ? (
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
+              <button
+                ref={buttonRef}
+                onClick={handleLoadPdf}
+                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg transition-all transform hover:scale-105 flex items-center gap-2"
+              >
+                <BookOpen className="w-5 h-5" />
+                Load Certificate {currentPdfIndex + 1}
+              </button>
+            </div>
+          ) : (
+            <iframe
+              src={pdfFiles[currentPdfIndex]}
+              className="w-full h-full border-0"
+              title={`Certificate ${currentPdfIndex + 1}`}
+            />
+          )}
         </div>
 
         <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between pointer-events-none px-4">
