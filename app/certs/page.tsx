@@ -5,12 +5,13 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, FileText } from 'lucide-react';
 import PDFBook from '@/components/PDFBook';
 
+
 function App() {
   const router = useRouter();
-  const [pdfFiles] = useState<string[]>([
+  const pdfFiles:string[] = [
     '/completion.pdf',
     '/nssf.pdf',
-  ]);
+  ];
 
   const handleBackHome = () => {
     router.push('/');
