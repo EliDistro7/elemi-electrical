@@ -9,6 +9,7 @@ import { Projects } from '@/components/Projects';
 import { Equipment } from '@/components/Equipment';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
+import Carousel from '@/components/Carousel';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           <Projects />
           <Equipment />
           <Contact />
+          <Carousel />
         </main>
         <Footer />
       </div>
