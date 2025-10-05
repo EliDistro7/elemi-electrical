@@ -164,7 +164,7 @@ export function Footer() {
               <div className="relative bg-gray-800 rounded-2xl overflow-hidden border-2 border-gray-700 hover:border-primary-500 transition-all duration-300 shadow-2xl">
                 <div className="aspect-[4/3] relative">
                   <iframe
-                    src="/completion.pdf"
+                    src="/nssf.pdf"
                     className="w-full h-full"
                     title="Company Certificate"
                   />
