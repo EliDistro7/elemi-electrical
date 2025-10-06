@@ -39,7 +39,7 @@ export function About() {
       aboutTitle: 'About Us',
       aboutSubtitle: 'Leading electrical solutions provider in Tanzania with expertise in transmission lines, solar power, and comprehensive electrical services',
       directorMessage: "Director's Message",
-      directorName: 'Baraka Elemi',
+      directorName: 'Baraka M, Mwakitwange',
       directorTitle: 'Managing Director',
       missionTitle: 'Our Mission',
       mission: 'To deliver exceptional electrical solutions that power communities and businesses across Tanzania, combining technical excellence with unwavering commitment to safety and sustainability.',
