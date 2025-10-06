@@ -135,49 +135,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Certificate Section */}
-        <div className="mt-12 pt-12 border-t border-gray-700">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Certificate Info */}
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="bg-yellow-500/20 p-3 rounded-xl">
-                  <Award className="h-6 w-6 text-yellow-400" />
-                </div>
-                <h3 className="text-2xl font-bold text-white font-display">{texts.ourCertificate}</h3>
-              </div>
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                {texts.certDescription}
-              </p>
-              <button
-                onClick={() => router.push('/certs')}
-                className="group inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/50 hover:scale-105"
-              >
-                <span>{texts.viewAllCertificates}</span>
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-
-            {/* Certificate Preview 
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-yellow-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-              <div className="relative bg-gray-800 rounded-2xl overflow-hidden border-2 border-gray-700 hover:border-primary-500 transition-all duration-300 shadow-2xl">
-                <div className="aspect-[4/3] relative">
-                  <iframe
-                    src="/nssf.pdf"
-                    className="w-full h-full"
-                    title="Company Certificate"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent pointer-events-none"></div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gray-900 to-transparent">
-                  <p className="text-xs text-gray-400 text-center">CRB Registration: E2/96/06/2024</p>
-                </div>
-              </div>
-            </div>
-            */}
-          </div>
-        </div>
+        {/* Certificate Section  */}
+      
 
         {/* Bottom Section */}
         <div className="border-t border-gray-700 pt-10 mt-12">

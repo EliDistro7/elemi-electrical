@@ -1,16 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageToggle } from './LanguageToggle';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
 
 export function Header() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { language } = useLanguage();
+
+  // ✅ Detect scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 30);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const translations = {
     en: {
@@ -21,7 +32,7 @@ export function Header() {
       equipment: 'Equipment',
       contact: 'Contact',
       getQuote: 'Get Quote',
-      tagline: 'Innovative. Skilled. Reliable.'
+      tagline: 'Innovative. Skilled. Reliable.',
     },
     sw: {
       home: 'Nyumbani',
@@ -31,8 +42,8 @@ export function Header() {
       equipment: 'Vifaa',
       contact: 'Wasiliana',
       getQuote: 'Pata Bei',
-      tagline: 'Ubunifu. Ujuzi. Uaminifu.'
-    }
+      tagline: 'Ubunifu. Ujuzi. Uaminifu.',
+    },
   };
 
   const texts = translations[language] || translations.en;
@@ -47,12 +58,18 @@ export function Header() {
   ];
 
   return (
-    <header className="bg-white border-b-4 border-black sticky top-0 z-50 shadow-md">
+    <header
+      className={clsx(
+        'sticky top-0 z-50 transition-all duration-500 border-b-4 border-black',
+        isScrolled
+          ? 'bg-white/90 shadow-md backdrop-blur-sm'
+          : 'bg-transparent border-none shadow-none'
+      )}
+    >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex justify-between items-center py-6">
           {/* Logo */}
           <div className="flex items-center space-x-4">
-         
             <div>
               <h1 className="text-2xl md:text-3xl font-black text-black leading-none tracking-tighter uppercase">
                 ELEMI ELECTRICAL
@@ -76,11 +93,12 @@ export function Header() {
               </a>
             ))}
             <LanguageToggle />
-            <Button 
+            <Button
               onClick={() => {
                 router.push('/#quote');
               }}
-             className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black px-8 py-6 text-base uppercase tracking-widest transition-all duration-300 hover:scale-105">
+              className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black px-8 py-6 text-base uppercase tracking-widest transition-all duration-300 hover:scale-105"
+            >
               {texts.getQuote}
             </Button>
           </nav>
@@ -103,7 +121,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-8 border-t-4 border-black animate-slide-down">
+          <div className="lg:hidden py-8 border-t-4 border-black animate-slide-down bg-white/95 backdrop-blur-md">
             <nav className="flex flex-col space-y-2">
               {navigation.map((item, index) => (
                 <a
@@ -117,11 +135,12 @@ export function Header() {
                 </a>
               ))}
               <div className="pt-4">
-                <Button 
+                <Button
                   onClick={() => {
                     router.push('/#quote');
                   }}
-                className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black w-full px-8 py-6 text-lg uppercase tracking-widest transition-all duration-300">
+                  className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black w-full px-8 py-6 text-lg uppercase tracking-widest transition-all duration-300"
+                >
                   {texts.getQuote}
                 </Button>
               </div>
