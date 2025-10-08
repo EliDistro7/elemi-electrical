@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Download, X } from 'lucide-react';
 
 interface PDFItem {
@@ -21,6 +21,10 @@ const PDFCarousel: React.FC<PDFCarouselProps> = ({ pdfs = [], title = "Documents
   const [loadedPdfs, setLoadedPdfs] = useState<Record<number, boolean>>({});
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [hasOpened, setHasOpened] = useState(false);
+
+  // ✅ Preload PDFs for smooth switching
   useEffect(() => {
     pdfs.forEach((_, index) => {
       setTimeout(() => {
@@ -31,6 +35,27 @@ const PDFCarousel: React.FC<PDFCarouselProps> = ({ pdfs = [], title = "Documents
       }, index * 500);
     });
   }, [pdfs]);
+
+  // ✅ Intersection Observer — triggers full view when in viewport
+  useEffect(() => {
+    if (!containerRef.current || hasOpened) return;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setShowFullView(true);
+            setHasOpened(true); // trigger only once
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.5 } // 50% visible before triggering
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [hasOpened]);
 
   const goToPrevious = () => {
     if (isAnimating) return;
@@ -72,7 +97,7 @@ const PDFCarousel: React.FC<PDFCarouselProps> = ({ pdfs = [], title = "Documents
   }
 
   return (
-    <div className="w-full min-h-screen bg-white py-6 sm:py-8 md:py-12">
+    <div ref={containerRef} className="w-full min-h-screen bg-white py-6 sm:py-8 md:py-12">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8 md:mb-12">
@@ -182,7 +207,7 @@ const PDFCarousel: React.FC<PDFCarouselProps> = ({ pdfs = [], title = "Documents
         </div>
       </div>
 
-      {/* Full Screen View */}
+      {/* Full Screen Viewer */}
       {showFullView && (
         <div className="fixed inset-0 z-50 bg-white flex items-center justify-center p-2 animate-fade-in">
           <div className="relative w-full h-full max-w-7xl max-h-[98vh] bg-white border-4 border-black overflow-hidden animate-zoom-in">
@@ -219,23 +244,12 @@ const PDFCarousel: React.FC<PDFCarouselProps> = ({ pdfs = [], title = "Documents
         </div>
       )}
 
+      {/* Animations */}
       <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes slideIn {
-          from { opacity: 0; transform: translateX(-20px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes zoomIn {
-          from { opacity: 0; transform: scale(0.98); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes expand {
-          from { width: 0.75rem; }
-          to { width: 2.5rem; }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+        @keyframes expand { from { width: 0.75rem; } to { width: 2.5rem; } }
         .animate-fade-in { animation: fadeIn 0.4s ease-out; }
         .animate-slide-in { animation: slideIn 0.5s ease-out; }
         .animate-zoom-in { animation: zoomIn 0.5s ease-out; }
