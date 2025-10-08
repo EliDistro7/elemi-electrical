@@ -52,12 +52,12 @@ const TeamCarousel = () => {
       caption: texts.caption3
     },
     {
-      url: '/elemi1.png',
+      url: '/pose.png',
       alt: 'Team celebration',
       caption: texts.caption1
     },
     {
-      url: '/elemi-car2.png',
+      url: '/winch2.jpeg',
       alt: 'Team working on project',
       caption: texts.caption2
     },

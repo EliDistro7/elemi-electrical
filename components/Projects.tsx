@@ -66,7 +66,7 @@ export function Projects() {
       location: 'Kigoma Region',
       year: '2022',
       status: 'completed',
-      image: 'https://images.pexels.com/photos/16058344/pexels-photo-16058344.jpeg',
+      image: '/winch1.jpeg',
       description: 'Rural electrification project covering multiple villages with MV lines and distribution transformers.',
     },
     {
@@ -76,7 +76,7 @@ export function Projects() {
       location: 'Kagera Region',
       year: '2022',
       status: 'completed',
-      image: '/MV1.png',
+      image: '/proj1.jpeg',
       description: 'Medium voltage transmission line construction and electrical infrastructure development.',
     },
     {
