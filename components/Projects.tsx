@@ -117,7 +117,7 @@ export function Projects() {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mb-32">
           {projects.map((project, index) => (
-            <Card key={index} className="group bg-white border-4 border-black hover:bg-black transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+            <Card key={index} className="group bg-white md:border-4 md:border-black hover:bg-black transition-all duration-500 hover:-translate-y-2 overflow-hidden">
               <div className="relative h-96 overflow-hidden">
                 <img
                   src={project.image}
