@@ -110,30 +110,44 @@ export function About() {
               <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black mb-6 sm:mb-8 md:mb-12 tracking-tight uppercase border-b-2 sm:border-b-4 border-black pb-3 sm:pb-4">
                 {t('directorMessage')}
               </h3>
-              <div className="bg-white border-2 sm:border-4 border-black p-4 sm:p-6 md:p-10 hover:-translate-y-2 transition-all duration-300">
-                <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 md:space-x-8 mb-6 sm:mb-8 md:mb-10">
-                  <div className="relative flex-shrink-0">
+              <div className="bg-black border-4 sm:border-6 border-black p-0 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group">
+                {/* Bold Accent Corner */}
+                <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-yellow-400 -mr-12 -mt-12 rotate-45 group-hover:scale-110 transition-transform duration-300"></div>
+                
+                {/* Main Content Container */}
+                <div className="bg-white border-4 border-black m-2 sm:m-3">
+                  {/* Director Photo - Full Width Hero Style */}
+                  <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[450px] xl:h-[500px] overflow-hidden border-b-4 border-black bg-gradient-to-br from-gray-100 to-gray-200">
                     <img
                       src="/elemi-boss.png"
                       alt="Managing Director"
-                      className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 object-cover border-2 sm:border-4 border-black"
+                      className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-8 h-8 sm:w-10 sm:h-10 bg-black border-2 sm:border-4 border-white flex items-center justify-center">
-                      <Award className="w-4 h-4 sm:w-5 sm:h-5 text-white" strokeWidth={3} />
+                    {/* Bold Overlay Banner */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm p-4 sm:p-6 md:p-8 border-t-4 border-yellow-400">
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <p className="font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mb-1 sm:mb-2 uppercase tracking-tight leading-tight">
+                            {t('directorName')}
+                          </p>
+                          <p className="text-sm sm:text-base md:text-lg lg:text-xl font-black text-yellow-400 uppercase tracking-wider">
+                            {t('directorTitle')}
+                          </p>
+                        </div>
+                        <div className="ml-4 bg-yellow-400 p-3 sm:p-4 md:p-5 border-4 border-white group-hover:rotate-12 transition-transform duration-300">
+                          <Award className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-black" strokeWidth={3} />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="text-center sm:text-left flex-1 min-w-0">
-                    <p className="font-black text-lg sm:text-xl md:text-2xl text-black mb-2 uppercase tracking-tight leading-tight break-words">
-                      {t('directorName')}
-                    </p>
-                    <p className="text-xs sm:text-sm md:text-base font-bold text-gray-600 uppercase tracking-wide">
-                      {t('directorTitle')}
+                  
+                  {/* Message Content */}
+                  <div className="p-6 sm:p-8 md:p-10 lg:p-12">
+                    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-900 font-medium leading-relaxed">
+                      {t('directorGreeting')}
                     </p>
                   </div>
                 </div>
-                <p className="text-sm sm:text-base md:text-lg text-gray-800 font-medium leading-relaxed">
-                  {t('directorGreeting')}
-                </p>
               </div>
             </div>
 
