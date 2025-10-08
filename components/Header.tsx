@@ -78,7 +78,7 @@ export function Header() {
           {/* Logo Section */}
           <a href="#home" className="flex items-center space-x-3 md:space-x-4 group">
             <div className={clsx(
-              "relative overflow-hidden border-4 border-black transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl",
+              "relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl",
               isScrolled ? "w-12 h-12 md:w-14 md:h-14" : "w-14 h-14 md:w-16 md:h-16"
             )}>
               <img
