@@ -55,7 +55,7 @@ export function Hero() {
       badge: { icon: Zap, text: 'Class II Electrical Contractors' }
     },
     {
-      image: '/MV1.png',
+      image: '/proj1.jpeg',
       title: 'Industrial Power Solutions',
       subtitle: 'Transmission Lines • Solar Systems • Power Distribution',
       badge: { icon: Building2, text: 'Mining & Infrastructure' }
