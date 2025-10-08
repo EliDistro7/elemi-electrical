@@ -42,7 +42,7 @@ export function About() {
       directorName: 'Baraka M, Mwakitwange',
       directorTitle: 'Managing Director',
       missionTitle: 'Our Mission',
-      mission: 'To deliver exceptional electrical solutions that power communities and businesses across Tanzania, combining technical excellence with unwavering commitment to safety and sustainability.',
+      mission: 'he company mission is to become professional electrical contracting company committed to technical competence, reliable workmanship and ethical business practices.',
       visionTitle: 'Our Vision',
       vision: 'To be the most trusted and innovative electrical contractor in East Africa, setting industry standards through quality service delivery and cutting-edge technology.',
       valuesTitle: 'Our Core Values',
@@ -99,7 +99,8 @@ export function About() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20 items-start">
+        <div className="grid lg
+        :grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20 items-start">
           {/* Left Content */}
           <div className="space-y-8 sm:space-y-10 md:space-y-12">
             {/* Director Message */}

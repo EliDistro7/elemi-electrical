@@ -10,8 +10,13 @@ import { Equipment } from '@/components/Equipment';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import Carousel from '@/components/Carousel';
+import PDFCarousel from '@/components/PDFCarousel';
 
 export default function Home() {
+    const certs = [
+    { id: 1, title: "Company Profile 2025", url: "/elemipro.pdf" },
+
+  ];
   return (
     <LanguageProvider>
       <div className="min-h-screen">
@@ -23,7 +28,7 @@ export default function Home() {
           <Projects />
           <Equipment />
           <Contact />
-          <Carousel />
+        <PDFCarousel pdfs={certs} title="Authorize" />
         </main>
         <Footer />
       </div>
