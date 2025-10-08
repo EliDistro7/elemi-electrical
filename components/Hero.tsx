@@ -78,16 +78,16 @@ export function Hero() {
             return (
               <div key={index} className="swiper-slide relative">
                 
-                {/* Background Image with Overlay */}
+                {/* Background Image with Lighter Overlay */}
                 <div
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{ backgroundImage: `url('${slide.image}')` }}
                 >
-                  {/* Dark Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-gray-900/80 to-black/70 backdrop-blur-[1px]"></div>
+                  {/* Lighter Dark Overlay - More Image Visible */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-gray-900/40 to-black/50"></div>
                   
                   {/* Subtle Pattern Overlay */}
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/20 to-black/40"></div>
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/10 to-black/20"></div>
                 </div>
 
                 {/* Content */}
@@ -95,22 +95,22 @@ export function Hero() {
                   <div className="max-w-6xl mx-auto px-6 lg:px-8 text-white">
                     <div className="text-center space-y-8">
                       
-                      {/* Badge */}
-                      <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3 animate-fade-in">
+                      {/* Badge with Better Contrast */}
+                      <div className="inline-flex items-center gap-3 bg-black/60 backdrop-blur-xl border border-white/30 rounded-full px-6 py-3 animate-fade-in shadow-2xl">
                         <BadgeIcon className="h-4 w-4 text-yellow-400" />
                         <span className="text-sm font-medium tracking-wider text-yellow-300 uppercase">
                           {slide.badge.text}
                         </span>
                       </div>
 
-                      {/* Main Title */}
+                      {/* Main Title with Text Shadow for Readability */}
                       <div className="space-y-6">
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.1] tracking-tight bg-gradient-to-r from-yellow-200 via-white to-blue-100 bg-clip-text text-transparent">
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.1] tracking-tight bg-gradient-to-r from-yellow-200 via-white to-blue-100 bg-clip-text text-transparent drop-shadow-2xl" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}>
                           {slide.title}
                         </h1>
                         
-                        {/* Subtitle with Spacious Layout */}
-                        <p className="text-xl md:text-2xl lg:text-3xl text-blue-100/90 font-light leading-relaxed max-w-4xl mx-auto tracking-wide">
+                        {/* Subtitle with Better Readability */}
+                        <p className="text-xl md:text-2xl lg:text-3xl text-white font-light leading-relaxed max-w-4xl mx-auto tracking-wide drop-shadow-lg bg-black/20 backdrop-blur-sm px-6 py-3 rounded-2xl">
                           {slide.subtitle}
                         </p>
                       </div>
@@ -129,7 +129,7 @@ export function Hero() {
                           onClick={() => router.push('/#quote')}
                           size="lg"
                           variant="outline"
-                          className="group border-2 border-white/40 bg-white/5 backdrop-blur-2xl text-white hover:bg-white hover:text-blue-900 px-10 py-7 text-lg font-semibold rounded-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 hover:border-white"
+                          className="group border-2 border-white/60 bg-black/40 backdrop-blur-2xl text-white hover:bg-white hover:text-blue-900 px-10 py-7 text-lg font-semibold rounded-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 hover:border-white shadow-xl"
                         >
                           <Phone className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
                           {t('requestQuote')}
@@ -150,7 +150,7 @@ export function Hero() {
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 hidden md:block">
         <div className="animate-bounce">
-          <div className="w-8 h-12 border-2 border-white/30 rounded-full flex justify-center backdrop-blur-lg bg-white/5">
+          <div className="w-8 h-12 border-2 border-white/50 rounded-full flex justify-center backdrop-blur-lg bg-black/30 shadow-xl">
             <div className="w-1.5 h-4 bg-gradient-to-b from-yellow-400 to-orange-400 rounded-full mt-3 animate-pulse"></div>
           </div>
         </div>
@@ -200,10 +200,11 @@ export function Hero() {
         :global(.swiper-pagination-bullet) {
           width: 8px;
           height: 8px;
-          background: rgba(255, 255, 255, 0.3);
+          background: rgba(255, 255, 255, 0.5);
           opacity: 1;
           transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         :global(.swiper-pagination-bullet-active) {
@@ -211,7 +212,8 @@ export function Hero() {
           height: 8px;
           border-radius: 4px;
           background: linear-gradient(45deg, #f59e0b, #fb923c);
-          box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+          box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
+          border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         /* Swiper Creative Effect Enhancements */

@@ -46,7 +46,7 @@ export function Projects() {
       location: 'Tarime, Mara Region',
       year: '2023',
       status: 'completed',
-      image: '/mara1.png',
+      image: '/mara1.jpeg',
       description: 'Complete electrical infrastructure upgrade including MV/LV distribution lines and transformer installations.',
     },
     {

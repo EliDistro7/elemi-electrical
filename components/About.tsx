@@ -16,6 +16,7 @@ export function About() {
     | 'directorMessage'
     | 'directorName'
     | 'directorTitle'
+    | 'directorGreeting'
     | 'missionTitle'
     | 'mission'
     | 'visionTitle'
@@ -41,8 +42,9 @@ export function About() {
       directorMessage: "Director's Message",
       directorName: 'Baraka M, Mwakitwange',
       directorTitle: 'Managing Director',
+      directorGreeting: 'Dear Esteemed Clients, It is with great pleasure that I welcome you to Elemi Electrical. We are a leading electrical engineering company based in Tanzania, providing a wide range of services in power infrastructure, MV & LV lines construction, solar power systems installations and general supply among other things. Our team of experts is dedicated to providing you with the best solutions for your electrical needs. At Elemi Electrical, we pride ourselves on our commitment to quality, safety, and customer satisfaction. We believe that our success is measured by the success of our clients, and we are committed to working closely with you to ensure that your projects are completed on time, within budget, and to your satisfaction. We are passionate about what we do, and we are committed to providing you with the highest level of service and expertise.',
       missionTitle: 'Our Mission',
-      mission: 'he company mission is to become professional electrical contracting company committed to technical competence, reliable workmanship and ethical business practices.',
+      mission: 'The company mission is to become professional electrical contracting company committed to technical competence, reliable workmanship and ethical business practices.',
       visionTitle: 'Our Vision',
       vision: 'To be the most trusted and innovative electrical contractor in East Africa, setting industry standards through quality service delivery and cutting-edge technology.',
       valuesTitle: 'Our Core Values',
@@ -58,10 +60,11 @@ export function About() {
       aboutTitle: 'Kuhusu Sisi',
       aboutSubtitle: 'Mtoa huduma za umeme wa kiongozi Tanzania wenye ujuzi wa mistari ya usambazaji, nishati ya jua, na huduma kamili za umeme',
       directorMessage: 'Ujumbe wa Mkurugenzi',
-      directorName: 'Baraka Elemi',
+      directorName: 'Baraka M, Mwakitwange',
       directorTitle: 'Mkurugenzi Mtendaji',
+      directorGreeting: 'Wateja Wapendwa, Ni kwa furaha kubwa kuwakaribisheni kwenye Elemi Electrical. Sisi ni kampuni inayoongoza katika uhandisi wa umeme Tanzania, tukitoa huduma mbalimbali katika miundombinu ya umeme, ujenzi wa mistari ya MV & LV, mifumo ya nishati ya jua na usambazaji wa jumla miongoni mwa mambo mengine. Timu yetu ya wataalam imejitolea kukupeni suluhisho bora kwa mahitaji yenu ya umeme. Katika Elemi Electrical, tunajivunia kujitolea kwetu kwa ubora, usalama, na kuridhisha wateja. Tunaamini kwamba mafanikio yetu yanapimwa kwa mafanikio ya wateja wetu, na tumejitolea kufanya kazi kwa karibu nanyi ili kuhakikisha miradi yenu inakamilika kwa wakati, ndani ya bajeti, na kwa kuridhisha kwenu. Tuna shauku juu ya tunachofanya, na tumejitolea kukupeni kiwango cha juu zaidi cha huduma na ujuzi.',
       missionTitle: 'Dhamira Yetu',
-      mission: 'Kutoa suluhisho bora za umeme zinazoendesha jamii na biashara kote Tanzania, tukiunganisha ubora wa kiufundi na kujitolea kwa usalama na uendelevu.',
+      mission: 'Dhamira ya kampuni ni kuwa kampuni ya ukandarasi wa umeme ya kitaalamu inayojitoa kwa ujuzi wa kiufundi, ufundi wa kuaminika na mazoea ya biashara ya kimaadili.',
       visionTitle: 'Dira Yetu',
       vision: 'Kuwa mkandarasi wa umeme anayeaminika na wa kisasa zaidi Afrika Mashariki, tukiweka viwango vya tasnia kupitia utoaji wa huduma bora na teknolojia ya kisasa.',
       valuesTitle: 'Maadili Yetu',
@@ -99,8 +102,7 @@ export function About() {
           </p>
         </div>
 
-        <div className="grid lg
-        :grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20 items-start">
           {/* Left Content */}
           <div className="space-y-8 sm:space-y-10 md:space-y-12">
             {/* Director Message */}
@@ -129,6 +131,9 @@ export function About() {
                     </p>
                   </div>
                 </div>
+                <p className="text-sm sm:text-base md:text-lg text-gray-800 font-medium leading-relaxed">
+                  {t('directorGreeting')}
+                </p>
               </div>
             </div>
 
@@ -190,7 +195,7 @@ export function About() {
               })}
             </div>
 
-            {/* Company Stats - FIXED RESPONSIVE VERSION */}
+            {/* Company Stats */}
             <div className="bg-black p-4 sm:p-6 md:p-8 lg:p-12 text-white border-2 sm:border-4 border-black hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
               <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,.05)_50%,transparent_75%,transparent_100%)] bg-[length:250px_250px] animate-[shimmer_3s_linear_infinite]"></div>
               
