@@ -49,19 +49,19 @@ export function Hero() {
 
   const slides = [
     {
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg',
+      image: '/mara1.png',
       title: t('heroTitle'),
       subtitle: t('heroSubtitle'),
       badge: { icon: Zap, text: 'Class II Electrical Contractors' }
     },
     {
-      image: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+      image: '/MV1.png',
       title: 'Industrial Power Solutions',
       subtitle: 'Transmission Lines • Solar Systems • Power Distribution',
       badge: { icon: Building2, text: 'Mining & Infrastructure' }
     },
     {
-      image: 'https://images.pexels.com/photos/442123/pexels-photo-442123.jpeg',
+      image: '/instructions2.png',
       title: 'Expert Engineering',
       subtitle: 'Certified Professionals • Quality Assurance • Safety First',
       badge: { icon: Award, text: 'Established 2019' }
