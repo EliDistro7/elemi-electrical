@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageToggle } from './LanguageToggle';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowUp } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 
@@ -12,16 +12,22 @@ export function Header() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const { language } = useLanguage();
 
   // ✅ Detect scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
+      setShowBackToTop(window.scrollY > 400);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const translations = {
     en: {
@@ -58,20 +64,21 @@ export function Header() {
   ];
 
   return (
-    <header
-      className={clsx(
-        'sticky top-0 z-50 transition-all duration-500 border-b-4 border-black',
-        isScrolled
-          ? 'bg-white/95 shadow-2xl backdrop-blur-md'
-          : 'bg-white/90 backdrop-blur-sm border-none shadow-lg'
-      )}
-    >
+    <>
+      <header
+        className={clsx(
+          'sticky top-0 z-50 transition-all duration-500 border-b-4 border-black',
+          isScrolled
+            ? 'bg-white/95 shadow-2xl backdrop-blur-md'
+            : 'bg-white/90 backdrop-blur-sm border-none shadow-lg'
+        )}
+      >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3 md:py-4">
           {/* Logo Section */}
           <a href="#home" className="flex items-center space-x-3 md:space-x-4 group">
             <div className={clsx(
-              "relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl",
+              "relative overflow-hidden border-4 border-black transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl",
               isScrolled ? "w-12 h-12 md:w-14 md:h-14" : "w-14 h-14 md:w-16 md:h-16"
             )}>
               <img
@@ -180,5 +187,17 @@ export function Header() {
         }
       `}</style>
     </header>
+
+    {/* Back to Top Button */}
+    {showBackToTop && (
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-8 right-8 z-50 bg-black hover:bg-yellow-400 text-white hover:text-black border-4 border-black p-4 transition-all duration-300 hover:scale-110 hover:-translate-y-1 shadow-2xl group animate-fade-in"
+        aria-label="Back to top"
+      >
+        <ArrowUp className="w-6 h-6 sm:w-8 sm:h-8 group-hover:animate-bounce" strokeWidth={3} />
+      </button>
+    )}
+    </>
   );
 }
