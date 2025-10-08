@@ -62,31 +62,44 @@ export function Header() {
       className={clsx(
         'sticky top-0 z-50 transition-all duration-500 border-b-4 border-black',
         isScrolled
-          ? 'bg-white/90 shadow-md backdrop-blur-sm'
-          : 'bg-transparent border-none shadow-none'
+          ? 'bg-white/95 shadow-2xl backdrop-blur-md'
+          : 'bg-white/90 backdrop-blur-sm border-none shadow-lg'
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="flex justify-between items-center py-6">
-          {/* Logo */}
-          <div className="flex items-center space-x-4">
-            <div>
-              <h1 className="text-2xl md:text-3xl font-black text-black leading-none tracking-tighter uppercase">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-3 md:py-4">
+          {/* Logo Section */}
+          <a href="#home" className="flex items-center space-x-3 md:space-x-4 group">
+            <div className={clsx(
+              "relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl",
+              isScrolled ? "w-12 h-12 md:w-14 md:h-14" : "w-14 h-14 md:w-16 md:h-16"
+            )}>
+              <img
+                src="/logo.jpg"
+                alt="Elemi Electrical Logo"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
+            <div className="hidden sm:block">
+              <h1 className={clsx(
+                "font-black text-black leading-none tracking-tighter uppercase transition-all duration-300",
+                isScrolled ? "text-xl md:text-2xl" : "text-2xl md:text-3xl"
+              )}>
                 ELEMI ELECTRICAL
               </h1>
-              <p className="text-xs font-black text-gray-700 tracking-widest uppercase mt-1">
+              <p className="text-[10px] md:text-xs font-black text-gray-700 tracking-widest uppercase mt-0.5">
                 {texts.tagline}
               </p>
             </div>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-base font-black text-black hover:text-gray-600 transition-all duration-300 uppercase tracking-wide relative group"
+                className="text-sm xl:text-base font-black text-black hover:text-gray-600 transition-all duration-300 uppercase tracking-wide relative group"
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-1 bg-black transition-all duration-300 group-hover:w-full"></span>
@@ -97,23 +110,23 @@ export function Header() {
               onClick={() => {
                 router.push('/#quote');
               }}
-              className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black px-8 py-6 text-base uppercase tracking-widest transition-all duration-300 hover:scale-105"
+              className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black px-6 xl:px-8 py-5 xl:py-6 text-sm xl:text-base uppercase tracking-widest transition-all duration-300 hover:scale-105"
             >
               {texts.getQuote}
             </Button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center space-x-4">
+          <div className="lg:hidden flex items-center space-x-3">
             <LanguageToggle />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-3 border-4 border-black hover:bg-black hover:text-white transition-all duration-300 group"
+              className="p-2.5 border-4 border-black hover:bg-black hover:text-white transition-all duration-300 group"
             >
               {isMenuOpen ? (
-                <X className="h-6 w-6 text-black group-hover:text-white" strokeWidth={3} />
+                <X className="h-5 w-5 md:h-6 md:w-6 text-black group-hover:text-white" strokeWidth={3} />
               ) : (
-                <Menu className="h-6 w-6 text-black group-hover:text-white" strokeWidth={3} />
+                <Menu className="h-5 w-5 md:h-6 md:w-6 text-black group-hover:text-white" strokeWidth={3} />
               )}
             </button>
           </div>
@@ -121,13 +134,13 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-8 border-t-4 border-black animate-slide-down bg-white/95 backdrop-blur-md">
+          <div className="lg:hidden py-6 border-t-4 border-black animate-slide-down bg-white">
             <nav className="flex flex-col space-y-2">
               {navigation.map((item, index) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-lg font-black text-black hover:bg-black hover:text-white transition-all duration-300 py-4 px-6 border-4 border-black uppercase tracking-wide"
+                  className="text-base md:text-lg font-black text-black hover:bg-black hover:text-white transition-all duration-300 py-3 md:py-4 px-4 md:px-6 border-4 border-black uppercase tracking-wide"
                   onClick={() => setIsMenuOpen(false)}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
@@ -138,8 +151,9 @@ export function Header() {
                 <Button
                   onClick={() => {
                     router.push('/#quote');
+                    setIsMenuOpen(false);
                   }}
-                  className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black w-full px-8 py-6 text-lg uppercase tracking-widest transition-all duration-300"
+                  className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black w-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg uppercase tracking-widest transition-all duration-300"
                 >
                   {texts.getQuote}
                 </Button>
@@ -148,6 +162,23 @@ export function Header() {
           </div>
         )}
       </div>
+
+      <style jsx>{`
+        @keyframes slide-down {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-slide-down {
+          animation: slide-down 0.3s ease-out forwards;
+        }
+      `}</style>
     </header>
   );
 }
