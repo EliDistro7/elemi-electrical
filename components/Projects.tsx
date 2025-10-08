@@ -103,7 +103,7 @@ export function Projects() {
 
   return (
     <section id="projects" className="py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="max-w-7xl mx-auto px-0 ">
         {/* Header */}
         <div className="text-center mb-32">
           <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-black mb-8 tracking-tighter uppercase">
