@@ -118,6 +118,7 @@ export function Hero() {
                       {/* CTA Buttons with Ample Spacing */}
                       <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8 animate-fade-in-slow">
                         <Button
+                         onClick={() => router.push('/#projects')}
                           size="lg"
                           className="group bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-500 hover:to-yellow-600 text-white px-10 py-7 text-lg font-semibold rounded-2xl shadow-2xl shadow-yellow-400/25 hover:shadow-3xl hover:shadow-orange-500/40 transition-all duration-500 hover:scale-105 hover:-translate-y-1"
                         >
