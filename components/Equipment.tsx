@@ -40,7 +40,7 @@ export function Equipment() {
   const fleetData = [
     {
       category: 'Specialized Vehicles',
-      image: 'https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg',
+      image: '/winch1.jpeg',
       items: [
         '2 Crane Trucks (15-ton capacity)',
         '3 Pickup Trucks (4WD)',
@@ -50,7 +50,7 @@ export function Equipment() {
     },
     {
       category: 'Electrical Tools',
-      image: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+      image: '/tool1.jpeg',
       items: [
         'Cable Pulling Equipment',
         'Power Quality Analyzers',
@@ -61,7 +61,7 @@ export function Equipment() {
     },
     {
       category: 'Safety Equipment',
-      image: 'https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg',
+      image: '/pose.png',
       items: [
         '100+ Safety Helmets',
         'Personal Protective Equipment',
