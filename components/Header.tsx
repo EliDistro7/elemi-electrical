@@ -87,6 +87,8 @@ export function Header() {
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
             </div>
+
+
             <div className="hidden sm:block">
               <h1 className={clsx(
                 "font-black text-black leading-none tracking-tighter uppercase transition-all duration-300",
@@ -192,7 +194,7 @@ export function Header() {
     {showBackToTop && (
       <button
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 z-50 bg-black hover:bg-yellow-400 text-white hover:text-black border-4 border-black p-4 transition-all duration-300 hover:scale-110 hover:-translate-y-1 shadow-2xl group animate-fade-in"
+        className="fixed bottom-8 right-8 z-50 bg-black/40 hover:bg-yellow-400 text-white hover:text-black rounded-md  p-4 transition-all duration-300 hover:scale-110 hover:-translate-y-1 shadow-2xl group animate-fade-in"
         aria-label="Back to top"
       >
         <ArrowUp className="w-6 h-6 sm:w-8 sm:h-8 group-hover:animate-bounce" strokeWidth={3} />
