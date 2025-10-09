@@ -47,7 +47,7 @@ export function Projects() {
       year: '2023',
       status: 'completed',
       image: '/mara1.jpeg',
-      description: 'Complete electrical infrastructure upgrade including MV/LV distribution lines and transformer installations.',
+      description: 'Installation of 33Kv 2000/450 kva Transformer at Seke Shinyanga lot 5 SGR project Isaka to Mwanza.',
     },
     {
       title: 'Giza Cable Industries - Power Networks',
@@ -67,7 +67,7 @@ export function Projects() {
       year: '2022',
       status: 'completed',
       image: '/winch1.jpeg',
-      description: 'Rural electrification project covering multiple villages with MV lines and distribution transformers.',
+      description: 'Reallocation line of LV and MV 33Kv and 11kv double socket SGR Lot 5 at Mwanza town.',
     },
     {
       title: 'China Civil Engineering - MV Lines',
