@@ -27,7 +27,7 @@ const TeamCarousel = () => {
       sectionSubtitle: 'Meet the people behind our success',
       caption1: 'Our team planning session',
       caption2: 'Collaborating on site',
-      caption3: 'Project completion celebration',
+      caption3: 'Boss',
       caption4: 'On-site inspection day',
       caption5: 'Innovation workshop'
     },
@@ -36,7 +36,7 @@ const TeamCarousel = () => {
       sectionSubtitle: 'Mkutane na watu nyuma ya mafanikio yetu',
       caption1: 'Kikao chetu cha mipango',
       caption2: 'Kushirikiana kazini',
-      caption3: 'Sherehe ya kukamilisha mradi',
+      caption3: 'Boss',
       caption4: 'Siku ya ukaguzi wa eneo',
       caption5: 'Warsha ya ubunifu'
     }
@@ -63,8 +63,8 @@ const TeamCarousel = () => {
     },
    
     {
-      url: '/instructions2.png',
-      alt: 'Team at construction site',
+      url: '/car3.jpeg',
+      alt: 'Our Equipment',
       caption: texts.caption4
     },
   

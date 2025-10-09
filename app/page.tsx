@@ -27,8 +27,9 @@ export default function Home() {
           <Services />
           <Projects />
           <Equipment />
+          <Carousel />
           <Contact />
-        <PDFCarousel pdfs={certs} title="Get Our Profile Docs" />
+        <PDFCarousel pdfs={certs} title="Get Profile PDF" />
         </main>
         <Footer />
       </div>
