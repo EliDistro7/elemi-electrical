@@ -72,11 +72,11 @@ export function Equipment() {
     },
     {
       category: 'Construction Tools',
-      image: 'https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg',
+      image: '/tool1.jpeg',
       items: [
         'Hydraulic Cable Cutters',
         'Pole Installation Equipment',
-        'Concrete Mixers',
+      
         'Welding Equipment',
         'Power Drills & Tools'
       ]
