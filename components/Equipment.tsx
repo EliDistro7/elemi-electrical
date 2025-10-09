@@ -72,7 +72,7 @@ export function Equipment() {
     },
     {
       category: 'Construction Tools',
-      image: '/tool1.jpeg',
+      image: '/tool2.jpeg',
       items: [
         'Hydraulic Cable Cutters',
         'Pole Installation Equipment',

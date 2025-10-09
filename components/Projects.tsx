@@ -40,10 +40,10 @@ export function Projects() {
 
   const projects = [
     {
-      title: 'North Mara Gold Mine - Power Distribution',
-      client: 'Barrick Gold Corporation',
+      title: 'CCECC - Power Distribution',
+      client: 'CCECC',
       value: 'USD 850,000',
-      location: 'Tarime, Mara Region',
+      location: 'Shinyanga',
       year: '2023',
       status: 'completed',
       image: '/mara1.jpeg',
@@ -63,7 +63,7 @@ export function Projects() {
       title: 'TANESCO Rural Electrification',
       client: 'TANESCO/REA',
       value: 'TZS 450,000,000',
-      location: 'Kigoma Region',
+      location: 'MWANZA TOWN',
       year: '2022',
       status: 'completed',
       image: '/winch1.jpeg',
