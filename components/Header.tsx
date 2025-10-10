@@ -80,7 +80,7 @@ export function Header() {
           <a href="#home" className="flex items-center space-x-3 md:space-x-4 group">
             <div className={clsx(
               "relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl",
-              isScrolled ? "w-16 h-14 md:w-14 md:h-14" : "w-18 h-14 md:w-20 md:h-16"
+              isScrolled ? "w-32 h-24 md:w-32 md:h-24" : "w-32 h-24 md:w-32 md:h-24"
             )}>
               <img
                 src="/logo.jpg"
