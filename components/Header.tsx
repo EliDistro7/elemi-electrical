@@ -74,12 +74,13 @@ export function Header() {
         )}
       >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
         <div className="flex justify-between items-center py-3 md:py-4">
           {/* Logo Section */}
           <a href="#home" className="flex items-center space-x-3 md:space-x-4 group">
             <div className={clsx(
               "relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl",
-              isScrolled ? "w-12 h-12 md:w-14 md:h-14" : "w-14 h-14 md:w-16 md:h-16"
+              isScrolled ? "w-16 h-14 md:w-14 md:h-14" : "w-18 h-14 md:w-20 md:h-16"
             )}>
               <img
                 src="/logo.jpg"
