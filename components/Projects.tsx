@@ -86,7 +86,7 @@ export function Projects() {
       location: 'Mwanza Region',
       year: '2023',
       status: 'ongoing',
-      image: '/solar2.png',
+      image: '/solar2.jpeg',
       description: 'Large-scale solar power system installation with battery storage and grid integration.',
     },
     {

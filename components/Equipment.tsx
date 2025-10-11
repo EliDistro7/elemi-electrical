@@ -40,7 +40,7 @@ export function Equipment() {
   const fleetData = [
     {
       category: 'Specialized Vehicles',
-      image: '/winch1.jpeg',
+      image: '/car3.jpeg',
       items: [
         '2 Crane Trucks (15-ton capacity)',
         '3 Pickup Trucks (4WD)',
