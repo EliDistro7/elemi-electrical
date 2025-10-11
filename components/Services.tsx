@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 export function Services() {
   const router = useRouter();
   const { t, language } = useLanguage();
-    const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
@@ -143,38 +143,89 @@ export function Services() {
 
   return (
     <section id="services" className="relative py-32 bg-white overflow-hidden">
-  {/* Hero with Video Background */}
-<div className="relative h-[600px] mb-32 overflow-hidden">
-  <video
-    ref={videoRef}
-    src="/promo1.mp4"
-    className="absolute inset-0 w-full h-full object-cover"
-    muted
-    playsInline
-    loop
-  />
-  {/* Dark overlay */}
-  <div className="absolute inset-0 bg-black/40"></div>
+      {/* Hero with Video Background */}
+      <div className="relative h-[600px] mb-32 overflow-hidden">
+        <video
+          ref={videoRef}
+          src="/promo1.mp4"
+          className="absolute inset-0 w-full h-full object-cover"
+          muted
+          playsInline
+          loop
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
 
-  {/* Glass effect title - top left */}
-  <div className="absolute top-6 left-6 md:top-12 md:left-12">
-    <div className="inline-block backdrop-blur-xs bg-white/10 px-6 py-4 md:px-10 md:py-6 lg:px-12 lg:py-8 rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl">
-      <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-none tracking-tighter">
-        {texts.servicesTitle}
-      </h2>
-    </div>
-  </div>
+        {/* Glass effect title - top left */}
+        <div className="absolute top-6 left-6 md:top-12 md:left-12">
+          <div className="inline-block backdrop-blur-xs bg-white/10 px-6 py-4 md:px-10 md:py-6 lg:px-12 lg:py-8 rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-none tracking-tighter">
+              {texts.servicesTitle}
+            </h2>
+          </div>
+        </div>
 
-  {/* Glass effect subtitle - bottom right */}
-  <div className="absolute bottom-6 right-6 md:bottom-12 md:right-12">
-    <div className="inline-block backdrop-blur-xs bg-white/10 px-6 py-4 md:px-10 md:py-6 lg:px-12 lg:py-8 rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl max-w-xs md:max-w-md lg:max-w-lg">
-      <p className="text-base md:text-lg lg:text-xl text-white/90 font-light tracking-wide text-right">
-        {texts.servicesSubtitle}
-      </p>
-    </div>
-  </div>
-</div>
+        {/* Glass effect subtitle - bottom right */}
+        <div className="absolute bottom-6 right-6 md:bottom-12 md:right-12">
+          <div className="inline-block backdrop-blur-xs bg-white/10 px-6 py-4 md:px-10 md:py-6 lg:px-12 lg:py-8 rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl max-w-xs md:max-w-md lg:max-w-lg">
+            <p className="text-base md:text-lg lg:text-xl text-white/90 font-light tracking-wide text-right">
+              {texts.servicesSubtitle}
+            </p>
+          </div>
+        </div>
+      </div>
 
+      {/* Featured Equipment Section */}
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-32">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Image Side */}
+          <div className="relative group">
+            <div className="absolute inset-0 bg-black transform translate-x-4 translate-y-4 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-300"></div>
+            <div className="relative border-4 border-black overflow-hidden">
+              <img 
+                src="/car4.jpeg" 
+                alt="Company Equipment Vehicle EEC 02"
+                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute top-4 left-4 bg-black text-white px-6 py-2 font-black uppercase text-sm tracking-wider">
+                EEC 02
+              </div>
+            </div>
+          </div>
+
+          {/* Content Side */}
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-3 bg-black text-white px-6 py-2 font-black uppercase tracking-widest text-xs">
+              <Route className="h-4 w-4" strokeWidth={3} />
+              <span>{language === 'sw' ? 'Vifaa Vyetu' : 'Our Equipment'}</span>
+            </div>
+
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-black leading-none tracking-tighter uppercase">
+              {language === 'sw' ? 'Vifaa vya Kisasa' : 'Modern Fleet'}
+            </h3>
+
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-light">
+              {language === 'sw' 
+                ? 'Tunamiliki vifaa vya kisasa na magari ya kazi yaliyosanifu kwa ajili ya miradi yote. Gari letu la EEC 02 ni mojawapo ya vifaa vyetu ambavyo vinatumika katika utekelezaji wa miradi ya umeme na usambazaji wa nguvu.'
+                : 'We maintain a modern fleet of specialized vehicles and equipment for all projects. Our EEC 02 vehicle is one of our key assets used in electrical installation and power distribution projects across the region.'}
+            </p>
+
+            <ul className="space-y-3">
+              {(language === 'sw' 
+                ? ['Magari ya Kisasa', 'Vifaa vya Usalama', 'Zana za Kiteknolojia', 'Timu ya Wataalam']
+                : ['Modern Vehicles', 'Safety Equipment', 'Advanced Tools', 'Expert Team']
+              ).map((item, idx) => (
+                <li key={idx} className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-black flex items-center justify-center">
+                    <Check className="h-4 w-4 text-white" strokeWidth={3} />
+                  </div>
+                  <span className="text-gray-900 font-medium">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Services Grid */}
@@ -218,8 +269,6 @@ export function Services() {
                       </li>
                     ))}
                   </ul>
-                  
-                 
                 </CardContent>
               </Card>
             );
@@ -246,9 +295,9 @@ export function Services() {
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Button
-                  onClick={() => {
-                    router.push('/#quote');
-                  }}
+                onClick={() => {
+                  router.push('/#quote');
+                }}
                 size="lg" 
                 className="group bg-white text-black hover:bg-black hover:text-white border-4 border-white font-black px-14 py-8 text-lg uppercase tracking-widest transition-all duration-300 hover:scale-105"
               >
@@ -257,9 +306,9 @@ export function Services() {
               </Button>
               
               <Button 
-                  onClick={() => {
-                    router.push('/#projects');
-                  }}
+                onClick={() => {
+                  router.push('/#projects');
+                }}
                 size="lg" 
                 className="group bg-black text-white hover:bg-white hover:text-black border-4 border-white font-black px-14 py-8 text-lg uppercase tracking-widest transition-all duration-300 hover:scale-105"
               >
