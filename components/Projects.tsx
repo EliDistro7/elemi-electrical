@@ -60,7 +60,7 @@ export function Projects() {
       description: 'Industrial power distribution networks and electrical safety systems installation.',
     },
     {
-      title: 'TANESCO Rural Electrification',
+      title: 'SGR LOT 5 ISAKA TO MWANZA PROJECT',
       client: 'TANESCO/REA',
       value: 'TZS 450,000,000',
       location: 'MWANZA TOWN',
