@@ -418,13 +418,7 @@ const CertificationsPage = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/contact"
-                className="bg-white text-primary-700 hover:bg-primary-50 rounded-xl px-8 py-4 font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg flex items-center justify-center gap-2"
-              >
-                <Mail className="w-5 h-5" strokeWidth={2.5} />
-                Contact Support
-              </a>
+            
               <a
                 href="tel:+255764420826"
                 className="bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-primary-700 border-2 border-white/20 rounded-xl px-8 py-4 font-semibold transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2"
