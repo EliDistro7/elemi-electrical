@@ -4,12 +4,10 @@ import React from 'react';
 import Link from 'next/link';
 import { 
   Shield, Award, CheckCircle2, Download, ExternalLink, 
-  Calendar, FileText, Building2, Users, Zap, AlertCircle,
-  Star, ArrowRight, Search, Filter, ChevronDown,
-  Globe, MapPin, Phone, Mail, ZoomIn, ZoomOut
+  FileText, Zap, AlertCircle, Search, Mail, Phone, ZoomIn, ZoomOut
 } from 'lucide-react';
 
-// PDFRenderer Component (inline version matching the actual component)
+// PDFRenderer Component
 const PDFRenderer = ({ pdfUrl, fileName, className }: any) => {
   const [zoomLevel, setZoomLevel] = React.useState(75);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -187,81 +185,42 @@ const PDFRenderer = ({ pdfUrl, fileName, className }: any) => {
   );
 };
 
-// Certification data structure
+// Certification data
 interface Certification {
   id: string;
   title: string;
-  category: 'government' | 'safety' | 'quality' | 'electrical' | 'environmental' | 'training';
+  category: 'government' | 'safety' | 'electrical';
   issuer: string;
-  issueDate: string;
-  expiryDate?: string;
-  status: 'active' | 'expired' | 'pending';
-  description: string;
-  pdfUrl?: string;
-  verificationCode?: string;
-  scope: string[];
+  pdfUrl: string;
   icon: React.ForwardRefExoticComponent<Omit<React.ComponentProps<'svg'>, "ref"> & React.RefAttributes<SVGSVGElement>>;
-  priority: number;
 }
 
 const certifications: Certification[] = [
- 
-
   {
-    id: 'safety-certification',
+    id: 'registered-company',
     title: 'REGISTERED COMPANY',
     category: 'safety',
-    issuer: 'Registered by the Business Registration and Licensing Agency (BRELA)',
-    issueDate: '2023-11-05',
-    expiryDate: '2024-11-04',
-    status: 'active',
-    description: 'Officially registered as a legal business entity in Tanzania, compliant with all local regulations.',
+    issuer: 'Business Registration and Licensing Agency (BRELA)',
     pdfUrl: '/brela.pdf',
-    verificationCode: 'OSHA-TZ-2023-789',
-    scope: [ 'General Contracting', 'Electrical Services', 'Safety Compliance' ],
     icon: AlertCircle,
-    priority: 3
   },
-   {
+  {
     id: 'electrical-license',
     title: 'ELECTRICAL CONTRACTOR LICENSE',
     category: 'government',
-    issuer: ' (CRB)',
-    issueDate: '2024-01-15',
-    expiryDate: '2025-01-14',
-    status: 'active',
-    description: 'Official government license authorizing electrical contracting and installation services in Tanzania.',
+    issuer: 'Contractors Registration Board (CRB)',
     pdfUrl: '/crb.pdf',
-    verificationCode: 'EWURA/EC/2024/001',
-    scope: ['Electrical Installation', 'Power Systems', 'Safety Compliance'],
     icon: Shield,
-    priority: 1
   },
   {
-    id: 'solar-certification',
-    title: 'Business License',
+    id: 'business-license',
+    title: 'BUSINESS LICENSE',
     category: 'electrical',
-    issuer: 'Issued by the Tanzania Revenue Authority (TRA)',
-    issueDate: '2023-08-10',
-    expiryDate: '2025-08-09',
-    status: 'active',
-    description: ' Official business license for operating as an electrical engineering contractor in Tanzania.',
+    issuer: 'Tanzania Revenue Authority (TRA)',
     pdfUrl: '/leseni.pdf',
-    verificationCode: 'TRA/BL/2023/456',
-    scope: [ 'Electrical Contracting', 'Solar Installations', 'Power Systems' ],
     icon: Zap,
-    priority: 4
   }
 ];
-
-const categoryColors = {
-  government: 'bg-black text-white',
-  safety: 'bg-white text-black border-2 border-black',
-  quality: 'bg-black text-white',
-  electrical: 'bg-white text-black border-2 border-black',
-  environmental: 'bg-black text-white',
-  training: 'bg-white text-black border-2 border-black'
-};
 
 const CertificationsPage = () => {
   const [selectedCategory, setSelectedCategory] = React.useState<string>('all');
@@ -270,10 +229,8 @@ const CertificationsPage = () => {
   const categories = [
     { value: 'all', label: 'All Certifications', count: certifications.length },
     { value: 'government', label: 'Government Permits', count: certifications.filter(c => c.category === 'government').length },
-    { value: 'quality', label: 'Quality Standards', count: certifications.filter(c => c.category === 'quality').length },
     { value: 'electrical', label: 'Electrical Certifications', count: certifications.filter(c => c.category === 'electrical').length },
-    { value: 'safety', label: 'Safety & Health', count: certifications.filter(c => c.category === 'safety').length },
-    { value: 'environmental', label: 'Environmental', count: certifications.filter(c => c.category === 'environmental').length }
+    { value: 'safety', label: 'Safety & Registration', count: certifications.filter(c => c.category === 'safety').length },
   ];
 
   const filteredCertifications = certifications
@@ -281,25 +238,7 @@ const CertificationsPage = () => {
     .filter(cert => 
       cert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       cert.issuer.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) => a.priority - b.priority);
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active': return 'bg-black text-white';
-      case 'expired': return 'bg-white text-black border-2 border-black';
-      case 'pending': return 'bg-gray-200 text-black border-2 border-black';
-      default: return 'bg-gray-100 text-black';
-    }
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-TZ', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
+    );
 
   return (
     <div className="min-h-screen bg-white">
@@ -329,7 +268,7 @@ const CertificationsPage = () => {
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
               <div className="bg-white p-4 sm:p-6 border-2 sm:border-4 border-white hover:bg-black hover:border-white transition-all duration-300 group">
-                <div className="text-3xl sm:text-4xl font-black text-black group-hover:text-white tracking-tight">{certifications.filter(c => c.status === 'active').length}</div>
+                <div className="text-3xl sm:text-4xl font-black text-black group-hover:text-white tracking-tight">{certifications.length}</div>
                 <div className="text-gray-700 group-hover:text-gray-300 text-xs sm:text-sm font-bold uppercase tracking-wide mt-1">Active Certificates</div>
               </div>
               <div className="bg-white p-4 sm:p-6 border-2 sm:border-4 border-white hover:bg-black hover:border-white transition-all duration-300 group">
@@ -395,47 +334,33 @@ const CertificationsPage = () => {
                 key={cert.id}
                 className="bg-white border-2 sm:border-4 border-black hover:-translate-y-1 transition-all duration-300"
               >
-         
-
                 {/* Certificate Content */}
                 <div className="p-4 sm:p-6 bg-gray-50">
-                  {/* Info Grid */}
-               
-
-              
-
                   {/* PDF Preview */}
-                  {cert.pdfUrl && (
-                    <div className="mb-6">
-                      <PDFRenderer
-                        pdfUrl={cert.pdfUrl}
-                        fileName={cert.title}
-                        className=""
-                      />
-                    </div>
-                  )}
+                  <div className="mb-6">
+                    <PDFRenderer
+                      pdfUrl={cert.pdfUrl}
+                      fileName={cert.title}
+                    />
+                  </div>
 
                   {/* Actions */}
                   <div className="flex flex-col sm:flex-row gap-3">
-                    {cert.pdfUrl && (
-                      <>
-                        <a
-                          href={cert.pdfUrl}
-                          download
-                          className="flex-1 bg-black text-white hover:bg-white hover:text-black border-2 sm:border-4 border-black px-4 sm:px-6 py-3 sm:py-4 font-black text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2"
-                        >
-                          <Download className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
-                          Download Certificate
-                        </a>
-                        <button
-                          onClick={() => window.open(cert.pdfUrl, '_blank')}
-                          className="flex-1 bg-white text-black hover:bg-black hover:text-white border-2 sm:border-4 border-black px-4 sm:px-6 py-3 sm:py-4 font-black text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2"
-                        >
-                          <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
-                          Open in New Tab
-                        </button>
-                      </>
-                    )}
+                    <a
+                      href={cert.pdfUrl}
+                      download
+                      className="flex-1 bg-black text-white hover:bg-white hover:text-black border-2 sm:border-4 border-black px-4 sm:px-6 py-3 sm:py-4 font-black text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      <Download className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
+                      Download Certificate
+                    </a>
+                    <button
+                      onClick={() => window.open(cert.pdfUrl, '_blank')}
+                      className="flex-1 bg-white text-black hover:bg-black hover:text-white border-2 sm:border-4 border-black px-4 sm:px-6 py-3 sm:py-4 font-black text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
+                      Open in New Tab
+                    </button>
                   </div>
                 </div>
               </div>
