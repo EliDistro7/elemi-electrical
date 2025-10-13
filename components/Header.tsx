@@ -36,6 +36,7 @@ export function Header() {
       services: 'Services',
       projects: 'Projects',
       equipment: 'Equipment',
+      certs: 'Certs',
       contact: 'Contact',
       getQuote: 'Get Quote',
       tagline: 'Innovative. Skilled. Reliable.',
@@ -46,6 +47,7 @@ export function Header() {
       services: 'Huduma',
       projects: 'Miradi',
       equipment: 'Vifaa',
+      certs: 'Vyeti',
       contact: 'Wasiliana',
       getQuote: 'Pata Bei',
       tagline: 'Ubunifu. Ujuzi. Uaminifu.',
@@ -60,6 +62,7 @@ export function Header() {
     { name: texts.services, href: '#services' },
     { name: texts.projects, href: '#projects' },
     { name: texts.equipment, href: '#equipment' },
+    { name: texts.certs, href: '/certs' },
     { name: texts.contact, href: '#contact' },
   ];
 
@@ -104,12 +107,13 @@ export function Header() {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+      {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-3 xl:space-x-4 2xl:space-x-6">
             {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm xl:text-base font-black text-black hover:text-gray-600 transition-all duration-300 uppercase tracking-wide relative group"
+                className="text-xs xl:text-sm 2xl:text-base font-black text-black hover:text-gray-600 transition-all duration-300 uppercase tracking-wide relative group whitespace-nowrap"
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-1 bg-black transition-all duration-300 group-hover:w-full"></span>
@@ -120,7 +124,7 @@ export function Header() {
               onClick={() => {
                 router.push('/#quote');
               }}
-              className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black px-6 xl:px-8 py-5 xl:py-6 text-sm xl:text-base uppercase tracking-widest transition-all duration-300 hover:scale-105"
+              className="bg-black text-white hover:bg-white hover:text-black border-4 border-black font-black px-4 xl:px-6 2xl:px-8 py-4 xl:py-5 2xl:py-6 text-xs xl:text-sm 2xl:text-base uppercase tracking-widest transition-all duration-300 hover:scale-105 whitespace-nowrap"
             >
               {texts.getQuote}
             </Button>
