@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { 
   Shield, Award, CheckCircle2, Download, ExternalLink, 
   FileText, Zap, AlertCircle, Search, Mail, Phone, ZoomIn, ZoomOut
@@ -53,47 +52,47 @@ const PDFRenderer = ({ pdfUrl, fileName, className }: any) => {
   }, [isLoading]);
 
   return (
-    <div className={`bg-white border-2 sm:border-4 border-black overflow-hidden ${className}`}>
+    <div className={`bg-white rounded-2xl shadow-primary overflow-hidden border border-border-default ${className}`}>
       {/* Header */}
-      <div className="bg-black p-4 md:p-5 lg:p-6 border-b-2 sm:border-b-4 border-black">
+      <div className="bg-gradient-to-r from-primary-700 to-primary-600 p-6 border-b border-primary-500/20">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
-          <div className="flex items-center gap-4 flex-shrink-0">
-            <div className="w-12 h-12 lg:w-14 lg:h-14 bg-white flex items-center justify-center">
-              <Shield className="w-6 h-6 lg:w-7 lg:h-7 text-black" strokeWidth={2.5} />
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20">
+              <Shield className="w-7 h-7 text-white" strokeWidth={2.5} />
             </div>
             <div>
-              <h3 className="font-black text-sm md:text-base lg:text-lg text-white tracking-tight uppercase whitespace-nowrap">{fileName}</h3>
-              <p className="text-xs text-gray-400 font-bold uppercase tracking-wider whitespace-nowrap mt-0.5">Government Authorization</p>
+              <h3 className="font-display font-bold text-lg text-white">{fileName}</h3>
+              <p className="text-sm text-primary-100 font-medium mt-0.5">Government Authorization</p>
             </div>
           </div>
           
-          <div className="flex items-center gap-2 lg:gap-3 flex-shrink-0">
-            <div className="flex items-center gap-1 bg-white/10 px-2 py-1">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 bg-white/10 backdrop-blur-sm rounded-lg px-2 py-1 border border-white/20">
               <button
                 onClick={handleZoomOut}
                 disabled={zoomLevel <= 50 || isLoading}
-                className="p-2 text-white hover:bg-white hover:text-black transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-white"
+                className="p-2 text-white hover:bg-white/20 rounded-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent"
                 title="Zoom Out"
               >
                 <ZoomOut className="w-4 h-4" strokeWidth={2.5} />
               </button>
-              <span className="text-white text-sm font-black px-2 tracking-wider min-w-[50px] text-center">{zoomLevel}%</span>
+              <span className="text-white text-sm font-bold px-2 min-w-[50px] text-center">{zoomLevel}%</span>
               <button
                 onClick={handleZoomIn}
                 disabled={zoomLevel >= 200 || isLoading}
-                className="p-2 text-white hover:bg-white hover:text-black transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-white"
+                className="p-2 text-white hover:bg-white/20 rounded-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent"
                 title="Zoom In"
               >
                 <ZoomIn className="w-4 h-4" strokeWidth={2.5} />
               </button>
             </div>
             
-            <div className="w-px h-8 bg-white/30"></div>
+            <div className="w-px h-8 bg-white/20"></div>
             
             <button
               onClick={handleOpenInNewTab}
               disabled={isLoading}
-              className="p-2.5 text-white hover:bg-white hover:text-black border-2 border-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-white"
+              className="p-2.5 text-white hover:bg-white/20 rounded-lg border border-white/20 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
               title="Open in New Tab"
             >
               <ExternalLink className="w-5 h-5" strokeWidth={2.5} />
@@ -101,7 +100,7 @@ const PDFRenderer = ({ pdfUrl, fileName, className }: any) => {
             <button
               onClick={handleDownload}
               disabled={isLoading}
-              className="p-2.5 text-white hover:bg-white hover:text-black border-2 border-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-white"
+              className="p-2.5 text-white hover:bg-white/20 rounded-lg border border-white/20 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
               title="Download PDF"
             >
               <Download className="w-5 h-5" strokeWidth={2.5} />
@@ -111,34 +110,34 @@ const PDFRenderer = ({ pdfUrl, fileName, className }: any) => {
       </div>
 
       {/* PDF Viewer */}
-      <div className="relative bg-gray-50 h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px]">
+      <div className="relative bg-background-300 h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px]">
         {isLoading && !error && (
           <div className="absolute inset-0 flex items-center justify-center bg-white/95 z-10">
             <div className="flex flex-col items-center space-y-4">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 border-4 sm:border-8 border-black border-t-transparent animate-spin"></div>
-              <p className="text-black font-black text-sm sm:text-base tracking-tight uppercase">Loading PDF...</p>
+              <div className="w-16 h-16 border-4 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
+              <p className="text-text-primary font-semibold text-base">Loading PDF...</p>
             </div>
           </div>
         )}
 
         {error ? (
           <div className="flex items-center justify-center h-full bg-white">
-            <div className="text-center p-6 sm:p-8">
-              <FileText className="w-16 h-16 sm:w-20 sm:h-20 text-black mx-auto mb-4" strokeWidth={2} />
-              <p className="text-black font-black text-base sm:text-lg mb-2 uppercase tracking-tight">PDF Preview Unavailable</p>
-              <p className="text-gray-700 font-bold text-xs sm:text-sm mb-6 uppercase">
+            <div className="text-center p-8">
+              <FileText className="w-20 h-20 text-primary-600 mx-auto mb-4" strokeWidth={2} />
+              <p className="text-text-primary font-bold text-lg mb-2">PDF Preview Unavailable</p>
+              <p className="text-text-secondary font-medium text-sm mb-6">
                 The PDF file could not be displayed in the browser
               </p>
               <div className="flex gap-3 justify-center flex-wrap">
                 <button
                   onClick={handleDownload}
-                  className="px-4 py-2 sm:px-6 sm:py-3 bg-black text-white hover:bg-white hover:text-black border-2 sm:border-4 border-black font-black text-xs sm:text-sm tracking-widest uppercase transition-all duration-300"
+                  className="px-6 py-3 bg-primary-700 text-white hover:bg-primary-800 rounded-xl font-semibold text-sm shadow-primary transition-all duration-300 hover:-translate-y-0.5"
                 >
                   Download PDF
                 </button>
                 <button
                   onClick={handleOpenInNewTab}
-                  className="px-4 py-2 sm:px-6 sm:py-3 bg-white text-black hover:bg-black hover:text-white border-2 sm:border-4 border-black font-black text-xs sm:text-sm tracking-widest uppercase transition-all duration-300"
+                  className="px-6 py-3 bg-white text-primary-700 hover:bg-primary-50 rounded-xl border-2 border-primary-200 font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
                 >
                   Open in New Tab
                 </button>
@@ -149,7 +148,7 @@ const PDFRenderer = ({ pdfUrl, fileName, className }: any) => {
           <iframe
             ref={iframeRef}
             src={`${pdfUrl}#zoom=${zoomLevel}&toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
-            className="w-full h-full border-0"
+            className="w-full h-full border-0 rounded-b-2xl"
             title={fileName}
             onLoad={handleIframeLoad}
             onError={handleIframeError}
@@ -162,22 +161,22 @@ const PDFRenderer = ({ pdfUrl, fileName, className }: any) => {
       </div>
 
       {/* Status Bar */}
-      <div className="bg-gray-50 border-t-2 sm:border-t-4 border-black px-4 sm:px-6 py-3 sm:py-4">
+      <div className="bg-background-200 border-t border-border-default px-6 py-4">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center space-x-2">
-            <span className="text-xs sm:text-sm font-black text-black uppercase tracking-wider">
+            <span className="text-sm font-semibold text-text-primary">
               {error ? "Load Failed" : isLoading ? "Loading..." : "PDF Loaded"}
             </span>
           </div>
           
           <div className="flex items-center space-x-3">
             {!error && !isLoading && (
-              <div className="flex items-center space-x-2 bg-black px-3 py-1">
+              <div className="flex items-center space-x-2 bg-green-500 px-3 py-1.5 rounded-lg">
                 <CheckCircle2 className="w-4 h-4 text-white" strokeWidth={2.5} />
-                <span className="text-xs font-black text-white uppercase tracking-wider">Verified</span>
+                <span className="text-xs font-bold text-white">Verified</span>
               </div>
             )}
-            <span className="text-xs font-bold text-gray-700 uppercase tracking-wide">Government Document</span>
+            <span className="text-xs font-medium text-text-secondary">Government Document</span>
           </div>
         </div>
       </div>
@@ -241,67 +240,99 @@ const CertificationsPage = () => {
     );
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header Section */}
-      <section className="relative bg-black text-white overflow-hidden border-b-4 sm:border-b-8 border-black">
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,.05)_25%,rgba(255,255,255,.05)_50%,transparent_50%,transparent_75%,rgba(255,255,255,.05)_75%,rgba(255,255,255,.05))] bg-[length:20px_20px]"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="flex items-center justify-center mb-6 sm:mb-8">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white flex items-center justify-center">
-                <Award className="w-8 h-8 sm:w-10 sm:h-10 text-black" strokeWidth={2.5} />
+    <div className="min-h-screen bg-background-100">
+      {/* Header Section with Image */}
+      <section className="relative bg-gradient-to-br from-primary-700 via-primary-600 to-purple-600 text-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/20">
+                  <Award className="w-8 h-8 text-white" strokeWidth={2.5} />
+                </div>
+                <span className="text-primary-100 font-semibold text-sm uppercase tracking-wider">Official Documents</span>
+              </div>
+              
+              <h1 className="font-display font-black text-5xl sm:text-6xl lg:text-7xl mb-6 leading-tight">
+                Official Certifications
+                <span className="block text-primary-200 text-3xl sm:text-4xl lg:text-5xl mt-3">
+                  & Accreditations
+                </span>
+              </h1>
+              
+              <p className="text-lg text-primary-100 mb-8 leading-relaxed font-medium">
+                View and download our official certifications and permits. All documents are verified and up-to-date with regulatory authorities.
+              </p>
+
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/10 backdrop-blur-sm p-5 rounded-xl border border-white/20">
+                  <div className="text-4xl font-black text-white">{certifications.length}</div>
+                  <div className="text-primary-100 text-sm font-medium mt-1">Active Certificates</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm p-5 rounded-xl border border-white/20">
+                  <div className="text-4xl font-black text-white">{new Set(certifications.map(c => c.issuer)).size}</div>
+                  <div className="text-primary-100 text-sm font-medium mt-1">Certifying Bodies</div>
+                </div>
               </div>
             </div>
-            
-            <h1 className="font-black text-4xl sm:text-5xl lg:text-7xl mb-4 sm:mb-6 tracking-tighter uppercase">
-              Official Certifications
-              <span className="block text-gray-300 text-2xl sm:text-3xl lg:text-4xl mt-2 sm:mt-4 tracking-tight">
-                & Accreditations
-              </span>
-            </h1>
-            
-            <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed font-semibold">
-              View and download our official certifications and permits. All documents are verified and up-to-date.
-            </p>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
-              <div className="bg-white p-4 sm:p-6 border-2 sm:border-4 border-white hover:bg-black hover:border-white transition-all duration-300 group">
-                <div className="text-3xl sm:text-4xl font-black text-black group-hover:text-white tracking-tight">{certifications.length}</div>
-                <div className="text-gray-700 group-hover:text-gray-300 text-xs sm:text-sm font-bold uppercase tracking-wide mt-1">Active Certificates</div>
+            {/* Right Image */}
+            <div className="relative">
+              <div className="relative rounded-3xl overflow-hidden shadow-primary-lg border-4 border-white/20">
+                <img 
+                  src="/jiangsu-reco1.jpg" 
+                  alt="Official Certifications" 
+                  className="w-full h-[400px] lg:h-[500px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent"></div>
+                
+                {/* Floating Badge */}
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <CheckCircle2 className="w-6 h-6 text-white" strokeWidth={2.5} />
+                      </div>
+                      <div>
+                        <p className="font-bold text-text-primary text-sm">All Certifications Verified</p>
+                        <p className="text-text-secondary text-xs">Updated 2024</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="bg-white p-4 sm:p-6 border-2 sm:border-4 border-white hover:bg-black hover:border-white transition-all duration-300 group">
-                <div className="text-3xl sm:text-4xl font-black text-black group-hover:text-white tracking-tight">{new Set(certifications.map(c => c.issuer)).size}</div>
-                <div className="text-gray-700 group-hover:text-gray-300 text-xs sm:text-sm font-bold uppercase tracking-wide mt-1">Certifying Bodies</div>
-              </div>
-              <div className="bg-white p-4 sm:p-6 border-2 sm:border-4 border-white hover:bg-black hover:border-white transition-all duration-300 group">
-                <div className="text-3xl sm:text-4xl font-black text-black group-hover:text-white tracking-tight">{categories.length - 1}</div>
-                <div className="text-gray-700 group-hover:text-gray-300 text-xs sm:text-sm font-bold uppercase tracking-wide mt-1">Categories</div>
-              </div>
-              <div className="bg-white p-4 sm:p-6 border-2 sm:border-4 border-white hover:bg-black hover:border-white transition-all duration-300 group">
-                <div className="text-3xl sm:text-4xl font-black text-black group-hover:text-white tracking-tight">2024</div>
-                <div className="text-gray-700 group-hover:text-gray-300 text-xs sm:text-sm font-bold uppercase tracking-wide mt-1">Latest Updates</div>
-              </div>
+              
+              {/* Decorative Elements */}
+              <div className="absolute -top-4 -right-4 w-32 h-32 bg-yellow-400 rounded-full blur-3xl opacity-20"></div>
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-400 rounded-full blur-3xl opacity-20"></div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Search and Filter Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="bg-white border-2 sm:border-4 border-black p-4 sm:p-6 hover:-translate-y-1 transition-all duration-300">
-          <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="bg-white rounded-2xl shadow-soft border border-border-light p-6 hover:shadow-medium transition-all duration-300">
+          <div className="flex flex-col lg:flex-row gap-6">
             {/* Search */}
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 sm:left-4 top-3 sm:top-4 w-5 h-5 text-black" strokeWidth={2.5} />
+                <Search className="absolute left-4 top-4 w-5 h-5 text-text-tertiary" strokeWidth={2.5} />
                 <input
                   type="text"
-                  placeholder="SEARCH CERTIFICATIONS..."
+                  placeholder="Search certifications..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 border-2 sm:border-4 border-black focus:outline-none focus:border-gray-600 font-bold text-sm sm:text-base uppercase tracking-wide placeholder:text-gray-400"
+                  className="w-full pl-12 pr-4 py-4 border-2 border-border-default rounded-xl focus:outline-none focus:border-primary-500 font-medium text-base transition-colors"
                 />
               </div>
             </div>
@@ -311,7 +342,7 @@ const CertificationsPage = () => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-3 sm:py-4 border-2 sm:border-4 border-black focus:outline-none focus:border-gray-600 font-bold text-sm sm:text-base uppercase bg-white"
+                className="w-full px-4 py-4 border-2 border-border-default rounded-xl focus:outline-none focus:border-primary-500 font-medium text-base bg-white transition-colors"
               >
                 {categories.map(category => (
                   <option key={category.value} value={category.value}>
@@ -325,17 +356,17 @@ const CertificationsPage = () => {
       </section>
 
       {/* Certifications Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 lg:pb-24">
-        <div className="grid gap-6 sm:gap-8 lg:gap-10">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 lg:pb-24">
+        <div className="grid gap-10">
           {filteredCertifications.map((cert) => {
             const IconComponent = cert.icon;
             return (
               <div
                 key={cert.id}
-                className="bg-white border-2 sm:border-4 border-black hover:-translate-y-1 transition-all duration-300"
+                className="bg-white rounded-2xl shadow-soft border border-border-light hover:shadow-primary transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Certificate Content */}
-                <div className="p-4 sm:p-6 bg-gray-50">
+                <div className="p-6">
                   {/* PDF Preview */}
                   <div className="mb-6">
                     <PDFRenderer
@@ -349,16 +380,16 @@ const CertificationsPage = () => {
                     <a
                       href={cert.pdfUrl}
                       download
-                      className="flex-1 bg-black text-white hover:bg-white hover:text-black border-2 sm:border-4 border-black px-4 sm:px-6 py-3 sm:py-4 font-black text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2"
+                      className="flex-1 bg-primary-700 text-white hover:bg-primary-800 rounded-xl px-6 py-4 font-semibold text-sm shadow-primary transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2"
                     >
-                      <Download className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
+                      <Download className="w-5 h-5" strokeWidth={2.5} />
                       Download Certificate
                     </a>
                     <button
                       onClick={() => window.open(cert.pdfUrl, '_blank')}
-                      className="flex-1 bg-white text-black hover:bg-black hover:text-white border-2 sm:border-4 border-black px-4 sm:px-6 py-3 sm:py-4 font-black text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2"
+                      className="flex-1 bg-white text-primary-700 hover:bg-primary-50 rounded-xl border-2 border-primary-200 px-6 py-4 font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2"
                     >
-                      <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
+                      <ExternalLink className="w-5 h-5" strokeWidth={2.5} />
                       Open in New Tab
                     </button>
                   </div>
@@ -369,36 +400,36 @@ const CertificationsPage = () => {
         </div>
 
         {filteredCertifications.length === 0 && (
-          <div className="text-center py-12 sm:py-16 bg-white border-2 sm:border-4 border-black">
-            <Search className="w-16 h-16 sm:w-20 sm:h-20 text-black mx-auto mb-4" strokeWidth={2} />
-            <h3 className="font-black text-xl sm:text-2xl text-black mb-2 uppercase tracking-tight">No certifications found</h3>
-            <p className="text-gray-700 font-bold uppercase text-sm">Try adjusting your search terms or filter selection.</p>
+          <div className="text-center py-16 bg-white rounded-2xl border border-border-light shadow-soft">
+            <Search className="w-20 h-20 text-text-tertiary mx-auto mb-4" strokeWidth={2} />
+            <h3 className="font-bold text-2xl text-text-primary mb-2">No certifications found</h3>
+            <p className="text-text-secondary font-medium">Try adjusting your search terms or filter selection.</p>
           </div>
         )}
       </section>
 
       {/* Contact Section */}
-      <section className="bg-black text-white py-12 sm:py-16 lg:py-24 border-t-4 sm:border-t-8 border-black">
+      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-purple-600 text-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="font-black text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6 uppercase tracking-tighter">Need Verification?</h2>
-            <p className="text-base sm:text-lg text-gray-300 mb-8 sm:mb-12 font-semibold">
+            <h2 className="font-display font-black text-4xl sm:text-5xl mb-6">Need Verification?</h2>
+            <p className="text-lg text-primary-100 mb-12 font-medium">
               Contact us for certificate verification or additional documentation requirements.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
+              <a
                 href="/contact"
-                className="bg-white text-black hover:bg-black hover:text-white border-2 sm:border-4 border-white px-6 sm:px-8 py-3 sm:py-4 font-black text-sm sm:text-base uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2"
+                className="bg-white text-primary-700 hover:bg-primary-50 rounded-xl px-8 py-4 font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg flex items-center justify-center gap-2"
               >
-                <Mail className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
+                <Mail className="w-5 h-5" strokeWidth={2.5} />
                 Contact Support
-              </Link>
+              </a>
               <a
                 href="tel:+255764420826"
-                className="bg-black text-white hover:bg-white hover:text-black border-2 sm:border-4 border-white px-6 sm:px-8 py-3 sm:py-4 font-black text-sm sm:text-base uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2"
+                className="bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-primary-700 border-2 border-white/20 rounded-xl px-8 py-4 font-semibold transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2"
               >
-                <Phone className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
+                <Phone className="w-5 h-5" strokeWidth={2.5} />
                 Call Verification
               </a>
             </div>

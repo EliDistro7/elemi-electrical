@@ -6,56 +6,55 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'media', // Respects system preference
+  darkMode: 'media',
   theme: {
     extend: {
       colors: {
-        // Primary brand colors
+        // Primary brand colors - Gold/Yellow from logo
         primary: {
-          50: '#f3f1ff',
-          100: '#ebe5ff', 
-          200: '#d9ceff',
-          300: '#bea6ff',
-          400: '#9f75ff',
-          500: '#843dff',
-          600: '#7c1aff',
-          700: '#6b46c1', // Light theme color
-          800: '#553c9a', // Dark theme color
-          900: '#4c1d95',
-          950: '#2e1065',
+          50: '#fffbeb',
+          100: '#fef3c7', 
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b',  // Main gold
+          600: '#d97706',  // Rich gold
+          700: '#b45309',  // Deep gold
+          800: '#92400e',
+          900: '#78350f',
+          950: '#451a03',
         },
         
-        // Secondary purple shades
-        purple: {
-          50: '#faf5ff',
-          100: '#f3e8ff',
-          200: '#e9d5ff',
-          300: '#d8b4fe',
-          400: '#c084fc',
-          500: '#a855f7',
-          600: '#9333ea',
-          700: '#7c2d92',
-          800: '#6b1b73',
-          900: '#581c87',
-          950: '#3b0764',
+        // Secondary colors - Sage/Gray-Green from logo
+        sage: {
+          50: '#f7f9f8',
+          100: '#ecf0ed',
+          200: '#d9e2dc',
+          300: '#b8c8be',
+          400: '#93ab9d',
+          500: '#7a9386',  // Main sage
+          600: '#6b8275',  // Medium sage
+          700: '#5a6d61',  // Deep sage
+          800: '#4a5a50',
+          900: '#3d4a42',
+          950: '#212a26',
         },
 
-        // Yellow accent colors
-        yellow: {
-          50: '#fefce8',
-          100: '#fef9c3',
-          200: '#fef08a',
-          300: '#fde047',
-          400: '#facc15',
-          500: '#eab308',
-          600: '#ca8a04',
-          700: '#a16207',
-          800: '#854d0e',
-          900: '#713f12',
-          950: '#422006',
+        // Accent gold variations
+        gold: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
         },
 
-        // Green accent colors
+        // Green accent colors (for success states)
         green: {
           50: '#f0fdf4',
           100: '#dcfce7',
@@ -75,9 +74,9 @@ module.exports = {
           50: '#fefefe',     // Pure white
           100: '#fdfdfd',    // Off-white
           200: '#fafafb',    // Very light gray
-          300: '#f7f8fa',    // Light gray with purple hint
-          400: '#f3f4f7',    // Medium light gray
-          500: '#eef0f4',    // Neutral gray
+          300: '#f7f8f9',    // Light gray
+          400: '#f3f4f6',    // Medium light gray
+          500: '#eef0f2',    // Neutral gray
         },
 
         // Text colors optimized for light backgrounds
@@ -85,17 +84,19 @@ module.exports = {
           primary: '#1f2937',    // Dark gray for main text
           secondary: '#6b7280',  // Medium gray for secondary text
           tertiary: '#9ca3af',   // Light gray for tertiary text
-          accent: '#6b46c1',     // Purple for accents
+          accent: '#d97706',     // Gold for accents
+          sage: '#5a6d61',       // Sage for special accents
           muted: '#d1d5db',      // Very light for disabled text
         },
 
-        // Border colors for light theme
+        // Border colors
         border: {
           light: '#f3f4f6',      // Very light borders
           default: '#e5e7eb',    // Default borders
           medium: '#d1d5db',     // Medium borders
           dark: '#9ca3af',       // Darker borders
-          accent: '#c084fc',     // Purple accent borders
+          accent: '#d97706',     // Gold accent borders
+          sage: '#7a9386',       // Sage accent borders
         },
 
         // Success, warning, error states
@@ -108,15 +109,13 @@ module.exports = {
         },
         
         warning: {
-          50: '#fefce8',
-          100: '#fef9c3',
-          500: '#eab308',
-          600: '#ca8a04',
-          700: '#a16207',
+          50: '#fffbeb',
+          100: '#fef3c7',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
         },
-         // Add these standard Tailwind color mappings
-  
-   
+         
         error: {
           50: '#fef2f2',
           100: '#fee2e2',
@@ -126,36 +125,36 @@ module.exports = {
         },
       },
 
-      // Custom gradients
+      // Custom gradients with brand colors
       backgroundImage: {
-        'primary-gradient': 'linear-gradient(135deg, #6b46c1 0%, #9333ea 50%, #a855f7 100%)',
-        'secondary-gradient': 'linear-gradient(135deg, #eab308 0%, #f59e0b 50%, #f97316 100%)',
+        'primary-gradient': 'linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #fbbf24 100%)',
+        'sage-gradient': 'linear-gradient(135deg, #5a6d61 0%, #7a9386 50%, #93ab9d 100%)',
+        'brand-gradient': 'linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #7a9386 100%)',
         'accent-gradient': 'linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #15803d 100%)',
         'light-gradient': 'linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%)',
-        'hero-gradient': 'linear-gradient(135deg, #6b46c1 0%, #9333ea 25%, #a855f7 50%, #eab308 75%, #22c55e 100%)',
+        'hero-gradient': 'linear-gradient(135deg, #d97706 0%, #f59e0b 25%, #fbbf24 50%, #7a9386 75%, #5a6d61 100%)',
       },
 
       // Custom shadows with brand colors
       boxShadow: {
-        'primary': '0 4px 20px rgba(107, 70, 193, 0.15)',
-        'primary-lg': '0 10px 30px rgba(107, 70, 193, 0.2)',
-        'yellow': '0 4px 20px rgba(234, 179, 8, 0.15)',
-        'yellow-lg': '0 10px 30px rgba(234, 179, 8, 0.2)',
-        'green': '0 4px 20px rgba(34, 197, 94, 0.15)',
-        'green-lg': '0 10px 30px rgba(34, 197, 94, 0.2)',
+        'primary': '0 4px 20px rgba(217, 119, 6, 0.15)',
+        'primary-lg': '0 10px 30px rgba(217, 119, 6, 0.2)',
+        'sage': '0 4px 20px rgba(122, 147, 134, 0.15)',
+        'sage-lg': '0 10px 30px rgba(122, 147, 134, 0.2)',
+        'gold': '0 4px 20px rgba(245, 158, 11, 0.15)',
+        'gold-lg': '0 10px 30px rgba(245, 158, 11, 0.2)',
         'soft': '0 2px 10px rgba(0, 0, 0, 0.05)',
         'medium': '0 4px 20px rgba(0, 0, 0, 0.08)',
         'strong': '0 8px 30px rgba(0, 0, 0, 0.12)',
       },
 
-      // Enhanced Typography with better font families
+      // Enhanced Typography
       fontFamily: {
         'sans': ['var(--font-inter)', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         'display': ['var(--font-poppins)', 'system-ui', 'sans-serif'],
         'mono': ['var(--font-jetbrains-mono)', 'Fira Code', 'monospace'],
       },
 
-      // Enhanced font weights
       fontWeight: {
         'thin': '100',
         'extralight': '200',
@@ -168,7 +167,6 @@ module.exports = {
         'black': '900',
       },
 
-      // Enhanced font sizes with better scaling
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.025em' }],
         'sm': ['0.875rem', { lineHeight: '1.5', letterSpacing: '0.025em' }],
@@ -185,7 +183,6 @@ module.exports = {
         '9xl': ['8rem', { lineHeight: '1.0', letterSpacing: '-0.05em' }],
       },
 
-      // Enhanced line heights
       lineHeight: {
         'none': '1',
         'tight': '1.25',
@@ -193,17 +190,8 @@ module.exports = {
         'normal': '1.5',
         'relaxed': '1.625',
         'loose': '2',
-        '3': '.75rem',
-        '4': '1rem',
-        '5': '1.25rem',
-        '6': '1.5rem',
-        '7': '1.75rem',
-        '8': '2rem',
-        '9': '2.25rem',
-        '10': '2.5rem',
       },
 
-      // Enhanced letter spacing
       letterSpacing: {
         'tighter': '-0.05em',
         'tight': '-0.025em',
@@ -213,7 +201,6 @@ module.exports = {
         'widest': '0.1em',
       },
 
-      // Custom spacing for better rhythm
       spacing: {
         '18': '4.5rem',
         '88': '22rem',
@@ -222,7 +209,6 @@ module.exports = {
         '128': '32rem',
       },
 
-      // Animation extensions
       animation: {
         'gentle-float': 'gentle-float 8s ease-in-out infinite',
         'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -232,7 +218,6 @@ module.exports = {
         'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
       },
 
-      // Custom keyframes
       keyframes: {
         'gentle-float': {
           '0%, 100%': { transform: 'translateY(0px) translateX(0px)' },
@@ -261,19 +246,16 @@ module.exports = {
         },
       },
 
-      // Border radius extensions
       borderRadius: {
         '4xl': '2rem',
         '5xl': '2.5rem',
       },
 
-      // Backdrop blur extensions
       backdropBlur: {
         xs: '2px',
         '3xl': '64px',
       },
 
-      // Z-index scale
       zIndex: {
         '60': '60',
         '70': '70',
@@ -284,10 +266,8 @@ module.exports = {
     },
   },
   plugins: [
-    // Plugin for custom utilities
-    function({ addUtilities, theme }: { addUtilities: (utilities: Record<string, any>) => void; theme: (path: string) => any }) {
+    function({ addUtilities }: { addUtilities: (utilities: Record<string, any>) => void }) {
       const newUtilities = {
-        // Glass morphism utilities
         '.glass': {
           'backdrop-filter': 'blur(16px)',
           'background': 'rgba(255, 255, 255, 0.1)',
@@ -299,7 +279,6 @@ module.exports = {
           'border': '1px solid rgba(255, 255, 255, 0.3)',
         },
         
-        // Text shadow utilities
         '.text-shadow-sm': {
           'text-shadow': '0 1px 2px rgba(0, 0, 0, 0.1)',
         },
@@ -310,7 +289,6 @@ module.exports = {
           'text-shadow': '0 4px 8px rgba(0, 0, 0, 0.3)',
         },
 
-        // Enhanced typography utilities
         '.text-balance': {
           'text-wrap': 'balance',
         },
@@ -318,9 +296,8 @@ module.exports = {
           'text-wrap': 'pretty',
         },
 
-        // Custom button styles with better typography
         '.btn-primary': {
-          'background': 'linear-gradient(135deg, #6b46c1 0%, #9333ea 50%, #a855f7 100%)',
+          'background': 'linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #fbbf24 100%)',
           'border': 'none',
           'color': 'white',
           'font-weight': '600',
@@ -329,12 +306,12 @@ module.exports = {
           'transition': 'all 0.3s ease',
           '&:hover': {
             'transform': 'translateY(-2px)',
-            'box-shadow': '0 8px 25px rgba(107, 70, 193, 0.3)',
+            'box-shadow': '0 8px 25px rgba(217, 119, 6, 0.3)',
           },
         },
         
         '.btn-secondary': {
-          'background': 'linear-gradient(135deg, #eab308 0%, #f59e0b 50%, #f97316 100%)',
+          'background': 'linear-gradient(135deg, #5a6d61 0%, #7a9386 50%, #93ab9d 100%)',
           'border': 'none',
           'color': 'white',
           'font-weight': '600',
@@ -343,7 +320,7 @@ module.exports = {
           'transition': 'all 0.3s ease',
           '&:hover': {
             'transform': 'translateY(-2px)',
-            'box-shadow': '0 8px 25px rgba(234, 179, 8, 0.3)',
+            'box-shadow': '0 8px 25px rgba(122, 147, 134, 0.3)',
           },
         },
 
@@ -361,7 +338,6 @@ module.exports = {
           },
         },
 
-        // Typography scale utilities
         '.text-display-xs': {
           'font-family': 'var(--font-poppins)',
           'font-size': '1.5rem',

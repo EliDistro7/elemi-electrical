@@ -18,9 +18,9 @@ export default function Home() {
 
   ];
   return (
-    <LanguageProvider>
+
       <div className="min-h-screen">
-        <Header />
+       
         <main>
           <Hero />
           <About />
@@ -31,8 +31,8 @@ export default function Home() {
           <Contact />
         <PDFCarousel pdfs={certs} title="Get Profile PDF" />
         </main>
-        <Footer />
+      
       </div>
-    </LanguageProvider>
+
   );
 }

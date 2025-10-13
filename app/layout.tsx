@@ -1,6 +1,10 @@
+import { Header } from '@/components/Header';
+
+import { LanguageProvider } from '@/contexts/LanguageContext';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter, Poppins, JetBrains_Mono } from 'next/font/google';
+import { Footer } from '@/components/Footer';
 
 // Primary font - Inter (improved weight range)
 const inter = Inter({ 
@@ -47,7 +51,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} font-sans`}>
+        <LanguageProvider>
+         <Header />
         {children}
+        <Footer />
+        </LanguageProvider>
+        
       </body>
     </html>
   );
