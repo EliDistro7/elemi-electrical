@@ -91,8 +91,16 @@ export function Footer() {
                 <div className="w-10 h-10 bg-yellow-800/50 rounded-xl flex items-center justify-center group-hover:bg-yellow-700/60 transition-colors">
                   <Mail className="h-4 w-4 text-yellow-300" />
                 </div>
-                <a href="mailto:baraka@elemielectrical.co.tz" className="text-sm hover:text-yellow-300 transition-colors">
-                  baraka@elemielectrical.co.tz
+                <a href="mailto:info@elemielectrical.co.tz" className="text-sm hover:text-yellow-300 transition-colors">
+                  info@elemielectrical.co.tz
+                </a>
+              </div>
+               <div className="flex items-center space-x-4 group">
+                <div className="w-10 h-10 bg-yellow-800/50 rounded-xl flex items-center justify-center group-hover:bg-yellow-700/60 transition-colors">
+                  <Mail className="h-4 w-4 text-yellow-300" />
+                </div>
+                <a href="mailto:technical@elemielectrical.co.tz" className="text-sm hover:text-yellow-300 transition-colors">
+                  technical@elemielectrical.co.tz
                 </a>
               </div>
             </div>
