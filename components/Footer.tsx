@@ -187,11 +187,11 @@ export function Footer() {
             <div className="flex flex-wrap justify-center gap-6 text-xs text-gray-500">
               <span className="flex items-center">
                 <div className="w-1 h-1 bg-primary-500 rounded-full mr-2"></div>
-                CRB Registration: E2/96/06/2024
+                CRB Registration: E1/133/02/2026
               </span>
               <span className="flex items-center">
                 <div className="w-1 h-1 bg-green-500 rounded-full mr-2"></div>
-                Class II Electrical Contractor
+                Class I Electrical Contractor
               </span>
               <span className="flex items-center">
                 <div className="w-1 h-1 bg-yellow-500 rounded-full mr-2"></div>

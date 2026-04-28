@@ -220,7 +220,7 @@ export function About() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   <div className="text-center bg-white text-black p-4 sm:p-6 md:p-8 border-2 sm:border-4 border-white">
                     <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-2 sm:mb-3 tracking-tighter">
-                      CLASS II
+                      CLASS I
                     </div>
                     <div className="text-[10px] sm:text-xs md:text-sm font-black uppercase tracking-wide sm:tracking-widest break-words">
                       Electrical Contractor
@@ -228,7 +228,7 @@ export function About() {
                   </div>
                   <div className="text-center bg-white text-black p-4 sm:p-6 md:p-8 border-2 sm:border-4 border-white">
                     <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-black mb-2 sm:mb-3 tracking-tight break-all">
-                      E2/96/06/2024
+                      E1/133/02/2026
                     </div>
                     <div className="text-[10px] sm:text-xs md:text-sm font-black uppercase tracking-wide sm:tracking-widest break-words">
                       CRB Registration

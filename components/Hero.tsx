@@ -52,7 +52,7 @@ export function Hero() {
       image: '/mara1.png',
       title: t('heroTitle'),
       subtitle: t('heroSubtitle'),
-      badge: { icon: Zap, text: 'Class II Electrical Contractors' }
+      badge: { icon: Zap, text: 'Class I Electrical Contractors' }
     },
     {
       image: '/proj1.jpeg',
