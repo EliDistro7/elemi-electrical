@@ -74,9 +74,10 @@ export function FeaturedProject() {
 
   // Media items: image1, image2, video
   const mediaItems = [
-    { type: 'image', src: '/WhatsApp_Image_2026-04-26_at_11_09_25__1_.jpeg', fallback: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg' },
-    { type: 'image', src: '/WhatsApp_Image_2026-04-26_at_11_09_25.jpeg', fallback: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg' },
+    { type: 'image', src: '/bul1.jpeg', fallback: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg' },
+    { type: 'image', src: '/bul2.jpeg', fallback: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg' },
     { type: 'video', src: '/barrick.mp4' },
+    { type: 'video', src: '/barrick2.mp4' },
   ];
 
   useEffect(() => {
@@ -142,14 +143,14 @@ export function FeaturedProject() {
 
       {/* ── MAIN CONTENT ── */}
       <div
-        className={`max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-0 border-4 border-black transition-all duration-700 delay-150 ${
+        className={`max-w-7xl mx-auto px-0 grid lg:grid-cols-2 gap-0 border-4 border-black transition-all duration-700 delay-150 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
         {/* LEFT: Media Viewer */}
         <div className="relative bg-black group">
           {/* Main media display */}
-          <div className="relative aspect-[4/3] overflow-hidden">
+          <div className="relative overflow-hidden">
             {current.type === 'image' ? (
               <img
                 key={activeMedia}
