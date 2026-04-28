@@ -6,6 +6,7 @@ import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
 import { Services } from '@/components/Services';
 import { Projects } from '@/components/Projects';
+import { FeaturedProject } from '@/components/FeaturedProject';
 import { Equipment } from '@/components/Equipment';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
@@ -13,26 +14,23 @@ import Carousel from '@/components/Carousel';
 import PDFCarousel from '@/components/PDFCarousel';
 
 export default function Home() {
-    const certs = [
+  const certs = [
     { id: 1, title: "Company Profile 2025", url: "/elemipro.pdf" },
-
   ];
+
   return (
-
-      <div className="min-h-screen">
-       
-        <main>
-          <Hero />
-          <About />
-          <Services />
-          <Projects />
-          <Equipment />
-          <Carousel />
-          <Contact />
+    <div className="min-h-screen">
+      <main>
+        <Hero />
+        <About />
+        <Services />
+        <FeaturedProject />
+        <Projects />
+        <Equipment />
+        <Carousel />
+        <Contact />
         <PDFCarousel pdfs={certs} title="Get Profile PDF" />
-        </main>
-      
-      </div>
-
+      </main>
+    </div>
   );
 }
