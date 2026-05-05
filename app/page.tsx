@@ -15,7 +15,7 @@ import PDFCarousel from '@/components/PDFCarousel';
 
 export default function Home() {
   const certs = [
-    { id: 1, title: "Company Profile 2025", url: "/elemipro.pdf" },
+    { id: 1, title: "Company Profile 2026", url: "/elemipro.pdf" },
   ];
 
   return (
